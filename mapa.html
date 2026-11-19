@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mapa da Cidade · Bairros e lugares de Caraguá Pixel</title>
+<meta name="description" content="Navegue pelo mapa interativo de Caraguá Pixel: Praça de Natal, Câmara, Prefeitura, Shopping, Parque, Pixel Motors, Boulevard, UPA 24h e mistérios.">
+<link rel="canonical" href="https://caraguapixel.online/mapa.html">
+<meta property="og:site_name" content="Caraguá Pixel">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mapa da Cidade · Bairros e lugares de Caraguá Pixel">
+<meta property="og:description" content="Navegue pelo mapa interativo de Caraguá Pixel: Praça de Natal, Câmara, Prefeitura, Shopping, Parque, Pixel Motors, Boulevard, UPA 24h e mistérios.">
+<meta property="og:url" content="https://caraguapixel.online/mapa.html">
+<meta property="og:image" content="https://caraguapixel.online/img/banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mapa da Cidade · Bairros e lugares de Caraguá Pixel">
+<meta name="twitter:description" content="Navegue pelo mapa interativo de Caraguá Pixel: Praça de Natal, Câmara, Prefeitura, Shopping, Parque, Pixel Motors, Boulevard, UPA 24h e mistérios.">
+<meta name="twitter:image" content="https://caraguapixel.online/img/banner.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="img/brasao.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&family=Silkscreen:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.min.css?v=20261118seo">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": "https://caraguapixel.online/mapa.html",
+  "name": "Mapa da Cidade · Bairros e lugares de Caraguá Pixel",
+  "inLanguage": "pt-BR",
+  "description": "Navegue pelo mapa interativo de Caraguá Pixel: Praça de Natal, Câmara, Prefeitura, Shopping, Parque, Pixel Motors, Boulevard, UPA 24h e mistérios.",
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Caraguatatuba, SP, Brasil"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Pontos de interesse de Caraguá Pixel",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Praça de Natal" },
+      { "@type": "ListItem", "position": 2, "name": "Câmara Municipal (15 Vereadores)" },
+      { "@type": "ListItem", "position": 3, "name": "Prefeitura (Prefeita Julia)" },
+      { "@type": "ListItem", "position": 4, "name": "Shopping Caragua Pixel" },
+      { "@type": "ListItem", "position": 5, "name": "Parque de Diversões" },
+      { "@type": "ListItem", "position": 6, "name": "Pixel Motors e Boulevard da Praia" },
+      { "@type": "ListItem", "position": 7, "name": "Hospital Municipal e UPA 24h" },
+      { "@type": "ListItem", "position": 8, "name": "Academia Pixel Fit e Galeria Pixel" },
+      { "@type": "ListItem", "position": 9, "name": "Cadeia 79" }
+    ]
+  }
+}
+</script>
+</head>
+<body>
+<div class="vagalumes-site" aria-hidden="true"></div>
+
+<header class="topo">
+  <nav class="nav">
+    <a class="marca" href="/"><img src="img/brasao.png" alt="Brasão de Caraguá Pixel" width="36" height="36"><span>Caraguá Pixel</span></a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="links">
+      <li><a href="/">Jogar</a></li>
+      <li><a href="sobre.html">A Cidade</a></li>
+      <li><a href="lore.html">Lore</a></li>
+      <li><a href="mapa.html" class="ativo">Mapa</a></li>
+      <li><a href="moradores.html">Moradores</a></li>
+      <li><a href="sugestoes.html">Sugestões</a></li>
+      <li><a href="empresas.html">🏢 Empresas VIP</a></li>
+      <li><a href="apoie.html" class="link-apoiar">Seja um pilar da cidade</a></li>
+    </ul>
+    <a class="btn btn-ouro btn-pequeno seguir" href="https://www.instagram.com/caraguapixel/" data-instagram target="_blank" rel="noopener noreferrer nofollow">Seguir</a>
+  </nav>
+</header>
+
+<main>
+  <section class="lore-topo">
+    <p class="kicker">MAPA · CARAGUÁ PIXEL</p>
+    <h1>O mapa de <span class="ouro">Caraguá Pixel</span></h1>
+    <p class="sub">A cidade que nasceu vazia e agora tem morador em cada janela acesa. Toque num ponto do mapa para ver o lugar de perto.</p>
+    <div class="legenda">
+      <span><i class="pino-mini conhecido"></i> Lugares da cidade</span>
+      <span><i class="pino-mini novo"></i> Novo / Em obras</span>
+      <span><i class="pino-mini misterio"></i> Mistérios</span>
+    </div>
+  </section>
+
+  <section class="mapa-area">
+    <div class="mapa-quadro">
+      <div class="maptools"><span>Toque num ponto para ver de perto</span><button class="btn btn-escuro btn-pequeno zoom" id="zoom" type="button" aria-pressed="false">+ Ampliar mapa</button></div>
+      <div class="mapbox" id="mapbox"><div class="mapa-img" id="map"><img src="img/mapa.jpg" alt="Mapa de Caraguá Pixel visto de cima, à noite" width="1080" height="1920"><div class="pinos" id="pinos"></div><span class="rosa" aria-hidden="true">N<br>▲</span></div></div>
+    </div>
+
+    <div class="mapa-lado">
+      <article class="painel" id="painel" aria-live="polite">
+        <div class="painel-foto"><img id="shot" src="img/praca.jpg" alt="Praça de Natal em Caraguá Pixel" width="1080" height="810"><span class="painel-tipo" id="tag">NOVO NA CIDADE</span></div>
+        <div class="painel-texto"><h2 id="name">Praça de Natal</h2><p class="painel-desc" id="text"></p><ul class="people" id="people" hidden></ul><p class="note" id="note" hidden></p><div class="painel-eps" id="eps"></div></div>
+      </article>
+      <div class="lista-lugares">
+        <p class="kicker">Lugares da cidade</p><div class="botoes-lugares" id="chipsPlaces"></div>
+        <p class="kicker">Novo &amp; Em obras</p><div class="botoes-lugares" id="chipsNew"></div>
+        <p class="kicker">Mistérios</p><div class="botoes-lugares" id="chipsMyst"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" aria-label="Guia completo de bairros, coordenadas e construções">
+    <p class="kicker">Guia Urbano · 23°37′ S · 45°25′ O</p>
+    <h2>Bairros, setores e construções de Caraguá Pixel</h2>
+    <p class="sub">Inspirada em Caraguatatuba, a malha urbana reúne 1.149 moradores distribuídos por 1.048 casas, 136 quarteirões e polos de lazer, saúde, governo e comércio real.</p>
+    <div class="explorar">
+      <article class="card">
+        <h3>Centro Cívico &amp; Praça de Natal</h3>
+        <p>No eixo central ficam a <strong>Prefeitura</strong>, onde a <strong>Prefeita Julia (@julia_silxo)</strong> ocupa o trono oficial da gestão, e a <strong>Câmara Municipal</strong> com as cadeiras dos <strong>15 vereadores eleitos</strong> do Dia 1. Logo ao lado estão o <strong>Fórum</strong>, com vagas abertas para o primeiro julgamento, e a iluminada <strong>Praça de Natal</strong>.</p>
+        <span class="tag tag-pronto">Governo &amp; Praça</span>
+      </article>
+      <article class="card">
+        <h3>Shopping, Parque &amp; Academia Pixel Fit</h3>
+        <p>Na área oeste e na expansão norte brilham o <strong>Shopping Caragua Pixel</strong> (com seis lojas, cinema e praça de alimentação) e o <strong>Parque de Diversões</strong> na ponta da praia, com roda-gigante e Carreta da Alegria. A <strong>Academia Pixel Fit</strong> completa a rota esportiva da cidade.</p>
+        <span class="tag tag-pronto">Lazer &amp; Fitness</span>
+      </article>
+      <article class="card">
+        <h3>Pixel Motors, Boulevard &amp; Galeria Pixel</h3>
+        <p>O corredor comercial liga a <strong>Galeria Pixel</strong> (8 lojas) ao <strong>Boulevard da Praia</strong> (4 lojas ao lado de Pizzaria Bella Caragua, Pixel Burger, Yakisoba Caiçara e Temakeria Sol Nascente) e à concessionária <strong>Pixel Motors</strong>. São 12 vitrines para empresas reais de Caraguatatuba.</p>
+        <span class="tag tag-pronto">12 Vitrines VIP</span>
+      </article>
+      <article class="card">
+        <h3>Saúde, Educação &amp; Cadeia 79</h3>
+        <p>O atendimento à população funciona 24 horas entre a <strong>UPA 24h</strong> (com os profissionais Chris, Bruno e Vitória) e o <strong>Hospital Municipal</strong> de quatro andares com heliponto e ambulância. A <strong>Escola e Quadra</strong> recebem os professores Marco e Julia, enquanto a <strong>Cadeia 79</strong> fica isolada a leste.</p>
+        <span class="tag tag-pronto">Serviços Públicos</span>
+      </article>
+      <article class="card">
+        <h3>Orla, Mar dos Pescadores &amp; Bairro Novo</h3>
+        <p>Seis prédios residenciais iluminam a orla em frente ao posto dos salva-vidas Pedro e Artur e ao <strong>Mar dos Pescadores</strong>, ponto de partida do barco de Enzo e do molhe do farol. Novos quarteirões seguem em obras no <strong>Bairro Novo</strong> para receber quem chega à cidade.</p>
+        <span class="tag tag-pronto">Orla &amp; Expansão</span>
+      </article>
+      <article class="card">
+        <h3>Mistérios: Morro e Ilha do Outro Lado</h3>
+        <p>Dois enigmas desafiam os moradores nos extremos do mapa: a luz que pisca todas as noites no alto do <strong>Morro Santo Antônio</strong>, acessível por trilha de terra, e a <strong>Ilha do Outro Lado</strong> do canal, onde ninguém da cidade conseguiu desembarcar até hoje.</p>
+        <span class="tag">Em Investigação</span>
+      </article>
+    </div>
+    <div class="acoes" style="margin-top:2rem">
+      <a class="btn btn-ouro" href="/">Entrar no Mapa 3D</a>
+      <a class="btn btn-escuro" href="empresas.html">Colocar Loja no Mapa</a>
+      <a class="btn btn-escuro" href="moradores.html">Ver Mural de Moradores</a>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <img class="banner-rodape" src="img/banner.png" alt="" aria-hidden="true">
+  <div class="rodape-conteudo">
+    <img src="img/brasao.png" alt="Brasão de Caraguá Pixel" width="56" height="56">
+    <p><strong>Caraguá Pixel</strong> · a cidade que você constrói seguindo</p>
+    <p><a href="https://www.instagram.com/caraguapixel/" data-instagram target="_blank" rel="noopener noreferrer nofollow" class="insta-texto">Instagram</a> · <a class="insta-texto" href="privacidade.html">Privacidade</a></p>
+    <div class="aviso" role="status" aria-live="polite"></div>
+  </div>
+</footer>
+<script src="js/main.min.js?v=20261118seo"></script>
+<script src="js/mapa.min.js?v=20261118seo"></script>
+</body>
+</html>

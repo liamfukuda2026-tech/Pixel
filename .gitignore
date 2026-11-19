@@ -1,0 +1,26 @@
+# Deployment archives & scratch files
+*.zip
+*.tar.gz
+*.tmp
+*.bak
+_tmp*
+
+# Runtime SQLite databases & logs
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.db
+*.log
+data/
+logs/
+
+# Secrets & environment files
+.env
+.env.*
+
+# Tooling & OS junk
+node_modules/
+__pycache__/
+.DS_Store
+Thumbs.db

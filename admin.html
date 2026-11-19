@@ -1,0 +1,2369 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel Admin · Economia, PIX e Lojas VIP | Caraguá Pixel</title>
+<meta name="description" content="Área administrativa restrita do Caraguá Pixel para gestão de economia, pedidos PIX, passes VIP, moradores, eventos e configurações da cidade.">
+<link rel="canonical" href="https://caraguapixel.online/admin.html">
+<link rel="icon" type="image/png" href="img/brasao.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  :root {
+    --bg-0: #0a0f16;
+    --bg-1: #0f172a;
+    --bg-2: #162038;
+    --bg-3: #1e293b;
+    --borda: #293859;
+    --borda-forte: #3d5280;
+    --ouro: #f0d060;
+    --ouro-escuro: #b7891f;
+    --verde: #4fd06f;
+    --verde-bg: rgba(79, 208, 111, 0.14);
+    --ciano: #38bdf8;
+    --ciano-bg: rgba(56, 189, 248, 0.14);
+    --coral: #fb7185;
+    --coral-bg: rgba(251, 113, 133, 0.15);
+    --texto: #f1f5f9;
+    --suave: #94a3b8;
+    --fonte-pixel: "Pixelify Sans", "Silkscreen", system-ui, sans-serif;
+    --fonte-mini: "Silkscreen", "Courier New", monospace;
+    --fonte-ui: "Inter", "Segoe UI", system-ui, sans-serif;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  html, body {
+    margin: 0;
+    min-height: 100%;
+    background: radial-gradient(circle at 50% 0%, #131f3a 0%, var(--bg-0) 58%);
+    color: var(--texto);
+    font-family: var(--fonte-ui);
+    font-size: 14px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--ouro);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Barra Superior */
+  .topo {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 15, 22, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--borda);
+  }
+
+  .topo-inner {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 12px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--texto);
+    text-decoration: none;
+  }
+  .marca:hover {
+    text-decoration: none;
+  }
+  .marca img {
+    width: 38px;
+    height: 38px;
+    image-rendering: pixelated;
+    border-radius: 50%;
+    border: 2px solid var(--ouro);
+  }
+  .marca-txt strong {
+    display: block;
+    font-family: var(--fonte-pixel);
+    font-size: 20px;
+    line-height: 1.05;
+    color: #ffffff;
+  }
+  .marca-txt strong span {
+    color: var(--ouro);
+  }
+  .marca-txt small {
+    font-family: var(--fonte-mini);
+    font-size: 10px;
+    color: var(--suave);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .topo-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Container Principal */
+  .container {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 24px 18px 64px;
+  }
+
+  /* Botões */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 14px;
+    background: var(--bg-2);
+    color: var(--texto);
+    border: 2px solid var(--borda-forte);
+    box-shadow: 3px 3px 0 #04070d;
+    font-family: var(--fonte-ui);
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1.15;
+    cursor: pointer;
+    text-decoration: none;
+    transition: filter 0.12s ease, transform 0.08s ease;
+  }
+  .btn:hover {
+    filter: brightness(1.12);
+    text-decoration: none;
+  }
+  .btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #04070d;
+  }
+  .btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .btn-ouro {
+    background: var(--ouro);
+    color: #0a0f16;
+    border-color: #fff3d0;
+  }
+  .btn-verde {
+    background: #1f8a42;
+    color: #ffffff;
+    border-color: var(--verde);
+  }
+  .btn-coral {
+    background: #881d32;
+    color: #ffe4e8;
+    border-color: var(--coral);
+  }
+  .btn-ciano {
+    background: #0e5a7a;
+    color: #e0f2fe;
+    border-color: var(--ciano);
+  }
+  .btn-sm {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* Cards e Painéis */
+  .card {
+    background: var(--bg-1);
+    border: 2px solid var(--borda);
+    box-shadow: 4px 4px 0 #04070d;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .card-ouro {
+    border-color: var(--ouro);
+    background: linear-gradient(135deg, #162038 0%, #0f172a 100%);
+  }
+
+  .auth-wrap {
+    max-width: 520px;
+    margin: 36px auto;
+  }
+
+  .secao-cab {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--borda);
+  }
+
+  .secao-titulo {
+    margin: 0;
+    font-family: var(--fonte-pixel);
+    font-size: 21px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .kicker {
+    display: inline-block;
+    font-family: var(--fonte-mini);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ouro);
+    margin-bottom: 4px;
+  }
+
+  /* Resumo KPI */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    background: var(--bg-1);
+    border: 2px solid var(--borda);
+    box-shadow: 4px 4px 0 #04070d;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .stat-card span {
+    font-family: var(--fonte-mini);
+    font-size: 10px;
+    color: var(--suave);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .stat-card strong {
+    font-family: var(--fonte-pixel);
+    font-size: 30px;
+    line-height: 1;
+    color: #ffffff;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-card.ouro strong { color: var(--ouro); }
+  .stat-card.verde strong { color: var(--verde); }
+  .stat-card.ciano strong { color: var(--ciano); }
+  .stat-card.roxo strong { color: #c084fc; }
+
+  /* Formulários */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .grid-precos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 12px;
+  }
+  .campo label {
+    font-family: var(--fonte-mini);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ouro);
+  }
+  .input, .select {
+    width: 100%;
+    padding: 9px 11px;
+    background: var(--bg-0);
+    color: var(--texto);
+    border: 2px solid var(--borda-forte);
+    font-family: var(--fonte-ui);
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .input:focus, .select:focus {
+    outline: none;
+    border-color: var(--ouro);
+  }
+
+  .preco-item {
+    background: var(--bg-0);
+    border: 1px solid var(--borda);
+    padding: 9px 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .preco-item span {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #e2e8f0;
+  }
+  .preco-item small {
+    font-family: var(--fonte-mini);
+    font-size: 9.5px;
+    color: var(--suave);
+  }
+
+  /* Segredo do Criador */
+  .segredo-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg-0);
+    border: 2px dashed var(--ouro);
+    margin: 10px 0;
+  }
+  .segredo-codigo {
+    font-family: var(--fonte-mini);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ouro);
+    letter-spacing: 0.06em;
+    word-break: break-all;
+  }
+
+  /* Badges e Tags */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    font-family: var(--fonte-mini);
+    font-size: 10px;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+  }
+  .badge-pendente {
+    color: var(--ouro);
+    background: rgba(240, 208, 96, 0.12);
+  }
+  .badge-aprovado {
+    color: var(--verde);
+    background: var(--verde-bg);
+  }
+  .badge-rejeitado {
+    color: var(--coral);
+    background: var(--coral-bg);
+  }
+  .badge-info {
+    color: var(--ciano);
+    background: var(--ciano-bg);
+  }
+
+  /* Tabelas e Listas */
+  .tabela-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th, td {
+    padding: 10px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--borda);
+    vertical-align: middle;
+  }
+  th {
+    font-family: var(--fonte-mini);
+    font-size: 10px;
+    color: var(--suave);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: rgba(10, 15, 22, 0.65);
+  }
+  tr.linha-pendente {
+    background: rgba(240, 208, 96, 0.07);
+  }
+
+  .mono {
+    font-family: var(--fonte-mini);
+    font-size: 11.5px;
+  }
+
+  .cor-bolinha {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #ffffff;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  /* Alertas / Toast */
+  .alerta {
+    padding: 12px 14px;
+    border: 2px solid var(--ciano);
+    background: var(--ciano-bg);
+    color: #e0f2fe;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .alerta.erro {
+    border-color: var(--coral);
+    background: var(--coral-bg);
+    color: #ffe4e8;
+  }
+  .alerta.sucesso {
+    border-color: var(--verde);
+    background: var(--verde-bg);
+    color: #dcfce7;
+  }
+
+  .toast {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 200;
+    max-width: min(420px, calc(100vw - 36px));
+    padding: 12px 16px;
+    background: var(--bg-2);
+    color: #ffffff;
+    border: 2px solid var(--ouro);
+    box-shadow: 5px 5px 0 #04070d;
+    font-weight: 700;
+  }
+
+  .vazio {
+    padding: 18px;
+    text-align: center;
+    color: var(--suave);
+    border: 1px dashed var(--borda);
+    background: rgba(10, 15, 22, 0.45);
+  }
+
+  .lojas-resumo-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .obs-loja {
+    max-width: 260px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .checklist-loja {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 142px;
+  }
+
+  .checklist-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 8px;
+    background: var(--bg-0);
+    border: 1px solid var(--borda);
+    font-size: 12px;
+    font-weight: 600;
+    color: #e2e8f0;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .checklist-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    accent-color: var(--verde);
+    cursor: pointer;
+  }
+
+  .checklist-item.feito {
+    border-color: var(--verde);
+    background: var(--verde-bg);
+    color: #dcfce7;
+  }
+
+  @media (max-width: 1040px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .grid-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .stats-grid, .grid-2 {
+      grid-template-columns: 1fr;
+    }
+    .card {
+      padding: 14px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="topo-inner">
+    <a class="marca" href="/">
+      <img src="img/brasao.png" alt="Brasão Caraguá Pixel" width="38" height="38">
+      <span class="marca-txt">
+        <strong>Caraguá <span>Admin</span></strong>
+        <small>Economia · PIX · Passes VIP · Terrenos</small>
+      </span>
+    </a>
+    <div class="topo-acoes">
+      <a class="btn btn-ciano btn-sm" href="/">🎮 Abrir Cidade 3D</a>
+      <button id="btnAtualizarTopo" class="btn btn-sm" type="button" hidden>🔄 Atualizar</button>
+      <button id="btnSairTopo" class="btn btn-coral btn-sm" type="button" hidden>🚪 Sair</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div id="avisoGlobal" class="alerta" hidden></div>
+
+  <!-- Carregando Inicial -->
+  <section id="telaCarregando" class="card auth-wrap">
+    <span class="kicker">CONECTANDO</span>
+    <h1 class="secao-titulo">Verificando painel administrativo…</h1>
+    <p style="color: var(--suave); margin: 0;">Consultando <code>api/economia.php</code>.</p>
+  </section>
+
+  <!-- Tela 1: Setup Inicial -->
+  <section id="telaSetup" class="card card-ouro auth-wrap" hidden>
+    <span class="kicker">PRIMEIRO ACESSO</span>
+    <h1 class="secao-titulo">🔐 Configurar Senha Inicial do Admin</h1>
+    <p style="color: var(--suave); margin-top: 0;">
+      Defina sua senha administrativa (mínimo 6 caracteres). Você também já pode informar sua chave PIX oficial agora ou configurar depois no painel.
+    </p>
+    <form id="formSetup">
+      <div class="grid-2">
+        <div class="campo">
+          <label for="setupSenha">Nova Senha do Admin *</label>
+          <input id="setupSenha" class="input" type="password" minlength="6" required autocomplete="new-password" placeholder="Mínimo 6 caracteres">
+        </div>
+        <div class="campo">
+          <label for="setupSenha2">Confirmar Senha *</label>
+          <input id="setupSenha2" class="input" type="password" minlength="6" required autocomplete="new-password" placeholder="Repita a senha">
+        </div>
+      </div>
+
+      <hr style="border: 0; border-top: 1px dashed var(--borda); margin: 12px 0 14px;">
+      <span class="kicker">OPCIONAL · DADOS PIX INICIAIS</span>
+
+      <div class="grid-2">
+        <div class="campo">
+          <label for="setupPixTipo">Tipo da Chave PIX</label>
+          <select id="setupPixTipo" class="select">
+            <option value="aleatoria">Chave Aleatória (EVP)</option>
+            <option value="cpf">CPF</option>
+            <option value="cnpj">CNPJ</option>
+            <option value="email">E-mail</option>
+            <option value="telefone">Telefone / Celular</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="setupPixChave">Chave PIX (opcional)</label>
+          <input id="setupPixChave" class="input" type="text" maxlength="77" placeholder="Deixe vazio para Modo Reserva">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="campo">
+          <label for="setupPixNome">Nome do Recebedor (até 25 letras)</label>
+          <input id="setupPixNome" class="input" type="text" maxlength="25" value="ELTON CARAGUA PIXEL">
+        </div>
+        <div class="campo">
+          <label for="setupPixCidade">Cidade (até 15 letras)</label>
+          <input id="setupPixCidade" class="input" type="text" maxlength="15" value="CARAGUATATUBA">
+        </div>
+      </div>
+
+      <hr style="border: 0; border-top: 1px dashed var(--borda); margin: 12px 0 14px;">
+      <span class="kicker" style="color:#009ee3;">⚡ OPCIONAL · PIX 100% AUTOMÁTICO 24H — MERCADO PAGO (RECOMENDADO)</span>
+      <p style="color: var(--suave); font-size: 13px; margin: 4px 0 10px;">
+        Com o Access Token de Produção do Mercado Pago, os pagamentos PIX são confirmados automaticamente em segundos, sem intervenção manual. Obtenha em:
+        <a href="https://www.mercadopago.com.br/developers/panel/app" target="_blank" rel="noopener noreferrer nofollow" style="color:#009ee3;">mercadopago.com.br/developers/panel/app</a>
+        → Suas integrações → Produção → Access Token (<code style="font-size:11px;">APP_USR-...</code>).
+      </p>
+      <div class="campo">
+        <label for="setupMpToken">Access Token de Produção (APP_USR-...) <small style="color:var(--suave);">— opcional, configure depois se preferir</small></label>
+        <input id="setupMpToken" class="input" type="password" maxlength="120" autocomplete="off" placeholder="APP_USR-... ou TEST-... (opcional)">
+      </div>
+
+      <button id="btnSalvarSetup" class="btn btn-ouro" type="submit" style="width: 100%; padding: 12px; margin-top: 6px;">
+        🚀 Concluir Configuração & Entrar
+      </button>
+    </form>
+  </section>
+
+  <!-- Tela 2: Login -->
+  <section id="telaLogin" class="card auth-wrap" hidden>
+    <span class="kicker">ACESSO RESTRITO</span>
+    <h1 class="secao-titulo">🔑 Login Administrativo</h1>
+    <p style="color: var(--suave); margin-top: 0;">Digite a senha do administrador de Caraguá Pixel para gerenciar pedidos PIX, passes e terrenos.</p>
+    <form id="formLogin">
+      <div class="campo">
+        <label for="loginSenha">Senha do Administrador</label>
+        <input id="loginSenha" class="input" type="password" required autocomplete="current-password" placeholder="Sua senha">
+      </div>
+      <button id="btnEntrarLogin" class="btn btn-ouro" type="submit" style="width: 100%; padding: 12px;">
+        🔓 Entrar no Painel
+      </button>
+    </form>
+  </section>
+
+  <!-- Tela 3: Dashboard Autenticado -->
+  <div id="telaDashboard" hidden>
+    <section id="bannerAutomacaoMp" class="card" hidden style="border-color: #009ee3; background: linear-gradient(135deg, rgba(0,158,227,0.18) 0%, rgba(15,23,42,0.96) 100%); margin-bottom: 18px;">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px;">
+        <div>
+          <strong style="color:#38bdf8; font-size:15px;">🤖 MODO 100% AUTOMÁTICO 24H ATIVO (Mercado Pago)</strong>
+          <p style="margin:4px 0 0; color:#e2e8f0; font-size:13px;">
+            Você não precisa aprovar nada manualmente! Pagamentos PIX são confirmados no Mercado Pago, constroem a casa 3D e entregam veículos/profissões sozinhos em segundos. QR Codes abertos sem pagamento expiram automaticamente em 45 min.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Cards de Resumo -->
+    <div class="stats-grid">
+      <div class="stat-card ciano">
+        <span>🟢 Jogadores Online Agora</span>
+        <strong id="statOnline">0</strong>
+      </div>
+      <div class="stat-card ouro">
+        <span>⏳ Pedidos Pendentes</span>
+        <strong id="statPendentes">0</strong>
+      </div>
+      <div class="stat-card verde">
+        <span>✅ Pedidos Aprovados</span>
+        <strong id="statAprovados">0</strong>
+      </div>
+      <div class="stat-card verde">
+        <span>💰 Receita Aprovada</span>
+        <strong id="statReceita">R$ 0,00</strong>
+      </div>
+      <div class="stat-card roxo">
+        <span>🏢 Lojas VIP Ocupadas</span>
+        <strong id="statLojasVip">0 / 20</strong>
+      </div>
+    </div>
+
+    <!-- 2. Segredo do Criador -->
+    <section class="card card-ouro">
+      <div class="secao-cab">
+        <div>
+          <span class="kicker">IDENTIDADE VERIFICADA NO SERVIDOR</span>
+          <h2 class="secao-titulo">👑 Segredo do Criador (@caraguapixel)</h2>
+        </div>
+        <button id="btnGirarSegredo" class="btn btn-sm" type="button">🎲 Gerar Novo Segredo</button>
+      </div>
+      <div class="segredo-box">
+        <code id="txtCreatorSecret" class="segredo-codigo">CRG-••••••••••</code>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button id="btnCopiarSegredo" class="btn btn-ouro" type="button">📋 Copiar Código do Criador</button>
+        </div>
+      </div>
+      <p style="margin: 8px 0 0; color: #cbd5e1; font-size: 13px;">
+        <strong>Como ativar no jogo:</strong> abra a cidade em <a href="/">index.html</a>, clique em
+        <strong>🛒 Loja VIP → 🔑 Ativar Código</strong> e cole este código secreto. O servidor valida com criptografia
+        e libera sua coroa dourada 3D, o selo exclusivo <code>👑 CRIADOR @caraguapixel</code>, aviso global de chegada e todos os carros/profissões!
+      </p>
+    </section>
+
+    <!-- 3. Pedidos PIX -->
+    <section class="card">
+      <div class="secao-cab">
+        <div>
+          <span id="kickerPedidos" class="kicker">LIBERAÇÃO EM 1 CLIQUE</span>
+          <h2 class="secao-titulo">💠 Pedidos PIX & Reservas (<span id="qtdPedidosTotal">0</span>)</h2>
+        </div>
+        <span id="descPedidos" style="font-size: 12px; color: var(--suave);">Ao aprovar, o terreno já é construído e o jogador recebe o passe na tela em até 4s!</span>
+      </div>
+      <div id="boxPasseRecemAprovado" class="alerta sucesso" hidden></div>
+      <div id="listaPedidosWrap" class="tabela-wrap"></div>
+    </section>
+
+    <!-- 3.5 Lojas & Empresas VIP (20 Vagas) -->
+    <section class="card card-ouro" id="secaoLojasEmpresas">
+      <div class="secao-cab">
+        <div>
+          <span class="kicker">LANÇAMENTO EXCLUSIVO · 20 VAGAS</span>
+          <h2 class="secao-titulo">🏢 Lojas &amp; Empresas VIP (<span id="qtdLojasTotal">0</span> / 20)</h2>
+        </div>
+        <span style="font-size: 12px; color: var(--ouro); font-weight: 700;">⏱️ SLA: Em até 2 dias úteis no ar</span>
+      </div>
+      <p style="color: #cbd5e1; font-size: 13px; margin: 0 0 12px;">
+        Acompanhe os pedidos de lojas locais. Clique para chamar no WhatsApp com 1 clique, receber a logo e colocar no ar rapidamente!
+      </p>
+      <div id="listaLojasEmpresasWrap" class="tabela-wrap"></div>
+    </section>
+
+    <!-- 4. Gerar Passe VIP Manual -->
+    <section class="card">
+      <div class="secao-cab">
+        <div>
+          <span class="kicker">CORTESIAS, APOIA.SE & SORTEIOS</span>
+          <h2 class="secao-titulo">🎟️ Gerar Passe VIP Manual (CPX-XXXX-XXXX)</h2>
+        </div>
+      </div>
+
+      <form id="formCriarPasse">
+        <div class="grid-3">
+          <div class="campo">
+            <label for="passeItem">Item / Benefício VIP</label>
+            <select id="passeItem" class="select"></select>
+          </div>
+          <div class="campo">
+            <label for="passeNome">Nome do Morador / Ganhador</label>
+            <input id="passeNome" class="input" type="text" maxlength="32" placeholder="Ex.: Maria">
+          </div>
+          <div class="campo">
+            <label for="passeArroba">@Instagram (opcional)</label>
+            <input id="passeArroba" class="input" type="text" maxlength="30" placeholder="@usuario">
+          </div>
+        </div>
+
+        <div id="camposLotePasse" class="grid-3" hidden>
+          <div class="campo">
+            <label for="passeLotId">ID do Terreno (opcional)</label>
+            <input id="passeLotId" class="input" type="text" maxlength="32" placeholder="Ex.: lote_1 (ou escolha no jogo)">
+          </div>
+          <div class="campo">
+            <label for="passeCor">Cor da Fachada</label>
+            <input id="passeCor" class="input" type="color" value="#f59e0b" style="height: 40px; padding: 4px;">
+          </div>
+          <div class="campo">
+            <label for="passeTituloCasa">Título da Casa</label>
+            <input id="passeTituloCasa" class="input" type="text" maxlength="36" placeholder="Ex.: Casa VIP">
+          </div>
+        </div>
+
+        <div class="grid-2" style="align-items: end;">
+          <div class="campo">
+            <label for="passeCustomCode">Código Personalizado (opcional · vazio gera CPX-XXXX-XXXX)</label>
+            <input id="passeCustomCode" class="input mono" type="text" maxlength="32" placeholder="Automático: CPX-XXXX-XXXX">
+          </div>
+          <div class="campo">
+            <button id="btnCriarPasse" class="btn btn-verde" type="submit" style="height: 41px;">
+              ✨ Gerar Código Passe VIP Agora
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <div id="boxPasseManualCriado" class="segredo-box" hidden></div>
+
+      <h3 style="font-family: var(--fonte-pixel); font-size: 17px; margin: 18px 0 10px;">Passes Recentes</h3>
+      <div id="listaPassesWrap" class="tabela-wrap"></div>
+    </section>
+
+    <!-- 5. Configuração PIX & Preços -->
+    <section class="card">
+      <div class="secao-cab">
+        <div>
+          <span class="kicker">RECEBIMENTO DIRETO SEM INTERMEDIÁRIOS</span>
+          <h2 class="secao-titulo">⚙️ Configuração PIX & Tabela de Preços</h2>
+        </div>
+        <span id="badgeStatusPix" class="badge badge-pendente">Verificando PIX…</span>
+      </div>
+
+      <form id="formConfig">
+        <div class="grid-2">
+          <div class="campo">
+            <label for="cfgPixTipo">Tipo da Chave PIX</label>
+            <select id="cfgPixTipo" class="select">
+              <option value="aleatoria">Chave Aleatória (EVP)</option>
+              <option value="cpf">CPF</option>
+              <option value="cnpj">CNPJ</option>
+              <option value="email">E-mail</option>
+              <option value="telefone">Telefone / Celular</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="cfgPixChave">Chave PIX Recebedora</label>
+            <input id="cfgPixChave" class="input" type="text" maxlength="77" placeholder="Cole sua chave PIX oficial aqui">
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="campo">
+            <label for="cfgPixNome">Nome no PIX (ASCII até 25 chars)</label>
+            <input id="cfgPixNome" class="input" type="text" maxlength="25" placeholder="ELTON CARAGUA PIXEL">
+          </div>
+          <div class="campo">
+            <label for="cfgPixCidade">Cidade no PIX (ASCII até 15 chars)</label>
+            <input id="cfgPixCidade" class="input" type="text" maxlength="15" placeholder="CARAGUATATUBA">
+          </div>
+          <div class="campo">
+            <label for="cfgNovaSenha">Alterar Senha Admin (opcional)</label>
+            <input id="cfgNovaSenha" class="input" type="password" minlength="6" autocomplete="new-password" placeholder="Em branco mantém a atual">
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px dashed var(--borda); margin: 14px 0 10px;">
+        <span class="kicker" style="color:#009ee3;">⚡ PIX 100% AUTOMÁTICO 24H — MERCADO PAGO (RECOMENDADO)</span>
+        <div id="badgeStatusMp" style="display:inline-block; margin: 4px 0 6px; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; background: var(--borda); color: var(--suave);">⚪ Verificando...</div>
+        <p style="color: var(--suave); font-size: 13px; margin: 2px 0 8px;">
+          Pagamentos PIX liberados automaticamente em segundos, sem intervenção manual.<br>
+          1. Acesse <a href="https://www.mercadopago.com.br/developers/panel/app" target="_blank" rel="noopener noreferrer nofollow" style="color:#009ee3;">mercadopago.com.br/developers/panel/app</a><br>
+          2. Suas integrações → Produção → copie o <strong>Access Token</strong> (<code style="font-size:11px;">APP_USR-...</code>)<br>
+          3. Cole abaixo e salve.
+        </p>
+        <div class="campo">
+          <label for="cfgMpToken">Access Token de Produção (APP_USR-...) — deixe vazio para manter o atual</label>
+          <input id="cfgMpToken" class="input" type="password" maxlength="120" autocomplete="off" placeholder="Cole aqui para ativar ou atualizar (vazio = mantém atual)">
+        </div>
+        <div style="display:flex; gap:8px; margin-bottom: 8px;">
+          <button type="button" id="btnLimparMpToken" class="btn" style="font-size:12px; padding: 6px 14px; background: var(--borda); color: var(--suave);">
+            🗑️ Remover Token MP (voltar ao Modo Reserva)
+          </button>
+        </div>
+
+        <label style="font-family: var(--fonte-mini); font-size: 10px; color: var(--ouro); text-transform: uppercase; letter-spacing: 0.06em;">
+          Tabela de Preços em Reais (R$)
+        </label>
+        <div id="gridPrecos" class="grid-precos"></div>
+
+        <div class="campo" style="margin-top: 10px; margin-bottom: 12px;">
+          <label for="cfgWhatsappVip">Link do Grupo VIP / Contato no WhatsApp (para recebimento de logos de Lojas)</label>
+          <input id="cfgWhatsappVip" class="input" type="text" maxlength="240" placeholder="https://chat.whatsapp.com/... ou https://wa.me/5512999999999">
+          <small style="color: var(--suave); font-size: 11px;">Link aberto automaticamente ao empresário logo após o pagamento PIX para envio de logo e ativação em até 2 dias.</small>
+        </div>
+
+        <button id="btnSalvarConfig" class="btn btn-ouro" type="submit" style="padding: 12px 22px;">
+          💾 Salvar Configurações PIX & Preços
+        </button>
+      </form>
+    </section>
+
+    <!-- 5B. Evento Noturno Polícia e Ladrão (21h) -->
+    <section class="card card-ouro" id="secaoEventoPolicia">
+      <div class="secao-cab">
+        <div>
+          <span class="kicker">EVENTO MULTIPLAYER DAS 21H · CADEIA 79</span>
+          <h2 class="secao-titulo">🚓 Evento Polícia e Ladrão (Noite)</h2>
+        </div>
+        <span id="badgeStatusPolicia" class="badge badge-pendente">Aguardando 21h</span>
+      </div>
+
+      <p id="policiaResumoStatus" style="color: var(--suave); font-size: 13px; margin: 4px 0 12px;">
+        Fuga da Cadeia 79 às 21h00 (Brasília): modo noite, viaturas com giroflex/sirene e captura por aproximação.
+      </p>
+
+      <div id="policiaXerifeBox" class="segredo-box" style="margin-bottom: 12px;" hidden>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <strong style="color: var(--ouro);">🚓 Destaque & Xerife da Noite:</strong>
+            <span id="policiaXerifeTxt">—</span>
+          </div>
+          <button type="button" id="btnLimparXerife" class="btn" style="font-size:12px; padding:6px 12px; background: var(--borda); color: var(--suave);">
+            Remover Destaque
+          </button>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 12px;">
+        <div class="campo">
+          <label for="cfgPoliciaAuto21">Disparo Automático às 21h00 (BRT)</label>
+          <select id="cfgPoliciaAuto21" class="select">
+            <option value="1">Ativado todo dia às 21h00</option>
+            <option value="0">Somente manual pelo Admin</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="cfgPoliciaDuracao">Duração da Rodada (minutos)</label>
+          <input id="cfgPoliciaDuracao" class="input" type="number" min="3" max="30" value="10">
+        </div>
+        <div class="campo">
+          <label for="cfgPoliciaNpcs">Qtd. de Ladrões NPCs</label>
+          <input id="cfgPoliciaNpcs" class="input" type="number" min="8" max="28" value="18">
+        </div>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:10px;">
+        <button type="button" id="btnIniciarPolicia" class="btn btn-verde" style="padding: 10px 18px;">
+          🚨 Iniciar Polícia e Ladrão Agora
+        </button>
+        <button type="button" id="btnCoroarPolicia" class="btn btn-ouro" style="padding: 10px 16px;" hidden>
+          🏆 Encerrar & Coroar Xerife
+        </button>
+        <button type="button" id="btnCancelarPolicia" class="btn" style="padding: 10px 16px; background: #c92a2a; color: #fff;" hidden>
+          ⏹️ Cancelar Evento
+        </button>
+        <button type="button" id="btnSalvarPoliciaCfg" class="btn" style="padding: 10px 16px; background: var(--borda); color: var(--texto);">
+          💾 Salvar Config Evento
+        </button>
+      </div>
+
+      <div id="policiaRankingAdminWrap" class="tabela-wrap" hidden></div>
+    </section>
+
+    <!-- 6. Terrenos Ocupados -->
+    <section class="card">
+      <div class="secao-cab">
+        <div>
+          <span class="kicker">MAPA IMOBILIÁRIO 3D</span>
+          <h2 class="secao-titulo">🏠 Terrenos Ocupados (<span id="qtdTerrenosOcupados">0</span>)</h2>
+        </div>
+      </div>
+      <div id="listaTerrenosWrap" class="tabela-wrap"></div>
+    </section>
+  </div>
+</main>
+
+<div id="toast" class="toast" hidden></div>
+
+<script>
+(function () {
+  "use strict";
+
+  const API_URL = "api/economia.php";
+  const CHAVE_TOKEN = "caragua_admin_token_v1";
+  const CHAVE_CHECKLIST_LOJAS = "caragua_admin_lojas_checklist_v1";
+
+  const PRECOS_PADRAO_ADMIN = {
+    moto: 0.99,
+    bugue: 1.99,
+    esportivo: 2.99,
+    caminhonete: 3.99,
+    casa_simples: 2.99,
+    casa_solar: 3.99,
+    sobrado: 4.99,
+    mansao: 6.99,
+    profissao_medica: 2.99,
+    profissao_barbeiro: 2.99,
+    profissao_corretor: 2.99,
+    profissao_empresario: 4.99,
+    combo_vip: 22.00,
+    loja_bronze: 19.90,
+    loja_empresa_vip: 29.90,
+    loja_ouro: 50.00,
+    policia_vida_extra: 1.50,
+    policia_moedas_500: 2.00,
+    policia_arma_vip: 3.00,
+    policia_moedas_1500: 5.00
+  };
+
+  const NOMES_ITENS = {
+    casa_simples: "🏡 Casa Caiçara Simples",
+    casa_solar: "🌴 Casa Solar da Praia",
+    sobrado: "🏢 Sobrado Colonial",
+    mansao: "🏰 Mansão Orla VIP",
+    moto: "🛵 Moto Praiana",
+    bugue: "🏖️ Bugue das Dunas",
+    esportivo: "🏎️ Esportivo Turbo",
+    caminhonete: "🛻 Caminhonete 4x4",
+    profissao_medica: "🩺 Profissão: Médica(o)",
+    profissao_barbeiro: "💈 Profissão: Barbeiro(a)",
+    profissao_corretor: "🏠 Profissão: Corretor(a)",
+    profissao_empresario: "💼 Profissão: Empresário(a)",
+    combo_vip: "👑 Combo Cidade VIP Completo",
+    loja_bronze: "🏪 Loja Real Essencial (1 Mês)",
+    loja_empresa_vip: "🏢 Loja Real Destaque + Stories (1 Mês)",
+    loja_ouro: "👑 Loja Patrocinador Master (1 Mês)",
+    policia_vida_extra: "🚑 Polícia & Ladrão: Fiança + 3 Vidas",
+    policia_moedas_500: "🪙 Polícia & Ladrão: 500 Moedas",
+    policia_arma_vip: "🔫 Polícia & Ladrão: Arminhas VIP",
+    policia_moedas_1500: "💰 Polícia & Ladrão: 1.500 Moedas + Passe"
+  };
+
+  const KINDS_ITENS = {
+    casa_simples: "casa",
+    casa_solar: "casa",
+    sobrado: "casa",
+    mansao: "casa",
+    moto: "carro",
+    bugue: "carro",
+    esportivo: "carro",
+    caminhonete: "carro",
+    profissao_medica: "profissao",
+    profissao_barbeiro: "profissao",
+    profissao_corretor: "profissao",
+    profissao_empresario: "profissao",
+    combo_vip: "vip",
+    loja_bronze: "loja",
+    loja_empresa_vip: "loja",
+    loja_ouro: "loja",
+    policia_vida_extra: "evento",
+    policia_moedas_500: "evento",
+    policia_arma_vip: "evento",
+    policia_moedas_1500: "evento"
+  };
+
+  let adminToken = lerTokenSalvo();
+  let dadosDash = null;
+  let formEditado = false;
+  let timerAutoRefresh = null;
+  let timerToast = null;
+
+  function lerTokenSalvo() {
+    try {
+      return sessionStorage.getItem(CHAVE_TOKEN) || localStorage.getItem(CHAVE_TOKEN) || "";
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function salvarToken(tk) {
+    adminToken = String(tk || "");
+    try {
+      if (adminToken) {
+        sessionStorage.setItem(CHAVE_TOKEN, adminToken);
+        localStorage.setItem(CHAVE_TOKEN, adminToken);
+      } else {
+        sessionStorage.removeItem(CHAVE_TOKEN);
+        localStorage.removeItem(CHAVE_TOKEN);
+      }
+    } catch (e) {}
+  }
+
+  function h(tag, attrs) {
+    const el = document.createElement(tag);
+    if (attrs) {
+      const keys = Object.keys(attrs);
+      for (let i = 0; i < keys.length; i++) {
+        const k = keys[i];
+        const v = attrs[k];
+        if (v === undefined || v === null || v === false) continue;
+        if (k === "className") el.className = v;
+        else if (k === "text") el.textContent = String(v);
+        else if (k === "style" && typeof v === "object") Object.assign(el.style, v);
+        else if (k.slice(0, 2) === "on" && typeof v === "function") el.addEventListener(k.slice(2).toLowerCase(), v);
+        else if (v === true) el.setAttribute(k, "");
+        else el.setAttribute(k, String(v));
+      }
+    }
+    for (let i = 2; i < arguments.length; i++) {
+      anexar(el, arguments[i]);
+    }
+    return el;
+  }
+
+  function anexar(pai, filho) {
+    if (filho === null || filho === undefined || filho === false) return;
+    if (Array.isArray(filho)) {
+      for (let i = 0; i < filho.length; i++) anexar(pai, filho[i]);
+      return;
+    }
+    if (filho instanceof Node) pai.appendChild(filho);
+    else pai.appendChild(document.createTextNode(String(filho)));
+  }
+
+  function limpar(el) {
+    while (el && el.firstChild) el.removeChild(el.firstChild);
+  }
+
+  function brl(valor) {
+    const n = Number(valor);
+    return "R$ " + (Number.isFinite(n) ? n : 0).toFixed(2).replace(".", ",");
+  }
+
+  function formatarData(ts) {
+    const num = Number(ts);
+    if (!num) return "—";
+    const d = new Date(num * 1000);
+    const dia = String(d.getDate()).padStart(2, "0");
+    const mes = String(d.getMonth() + 1).padStart(2, "0");
+    const hh = String(d.getHours()).padStart(2, "0");
+    const mm = String(d.getMinutes()).padStart(2, "0");
+    return dia + "/" + mes + " " + hh + ":" + mm;
+  }
+
+  function mostrarToast(msg) {
+    const el = document.getElementById("toast");
+    el.textContent = msg;
+    el.hidden = false;
+    if (timerToast) clearTimeout(timerToast);
+    timerToast = setTimeout(function () {
+      el.hidden = true;
+    }, 3400);
+  }
+
+  function mostrarAvisoGlobal(msg, tipo) {
+    const el = document.getElementById("avisoGlobal");
+    if (!msg) {
+      el.hidden = true;
+      return;
+    }
+    el.className = "alerta" + (tipo ? " " + tipo : "");
+    el.textContent = msg;
+    el.hidden = false;
+  }
+
+  function copiar(texto, rotuloOk) {
+    const str = String(texto || "");
+    if (!str) return;
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+      navigator.clipboard.writeText(str).then(
+        function () { mostrarToast(rotuloOk || "✅ Copiado para a área de transferência!"); },
+        function () { copiarFallback(str, rotuloOk); }
+      );
+    } else {
+      copiarFallback(str, rotuloOk);
+    }
+  }
+
+  function copiarFallback(str, rotuloOk) {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = str;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      mostrarToast(rotuloOk || "✅ Copiado!");
+    } catch (e) {}
+  }
+
+  async function apiGet(action) {
+    const headers = { Accept: "application/json" };
+    if (adminToken) headers["X-Admin-Token"] = adminToken;
+    const url = API_URL + "?action=" + encodeURIComponent(action);
+    const resp = await fetch(url, { method: "GET", headers: headers, cache: "no-store" });
+    const json = await resp.json().catch(function () {
+      return { ok: false, erro: "Resposta inválida do servidor PHP." };
+    });
+    json._httpStatus = resp.status;
+    return json;
+  }
+
+  async function apiPost(action, payload) {
+    const headers = {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    };
+    if (adminToken) headers["X-Admin-Token"] = adminToken;
+    const body = Object.assign({ action: action }, payload || {});
+    if (adminToken && !body.token) body.token = adminToken;
+
+    const resp = await fetch(API_URL + "?action=" + encodeURIComponent(action), {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body)
+    });
+    const json = await resp.json().catch(function () {
+      return { ok: false, erro: "Resposta inválida do servidor PHP." };
+    });
+    json._httpStatus = resp.status;
+    return json;
+  }
+
+  function erroMsg(res, padrao) {
+    if (!res) return padrao || "Erro inesperado.";
+    return res.erro || res.error || res.message || padrao || "Operação falhou.";
+  }
+
+  // Controle de Telas
+  function alternarTela(qual) {
+    document.getElementById("telaCarregando").hidden = qual !== "carregando";
+    document.getElementById("telaSetup").hidden = qual !== "setup";
+    document.getElementById("telaLogin").hidden = qual !== "login";
+    document.getElementById("telaDashboard").hidden = qual !== "dashboard";
+
+    const logado = qual === "dashboard";
+    document.getElementById("btnAtualizarTopo").hidden = !logado;
+    document.getElementById("btnSairTopo").hidden = !logado;
+
+    if (!logado && timerAutoRefresh) {
+      clearInterval(timerAutoRefresh);
+      timerAutoRefresh = null;
+    }
+  }
+
+  async function verificarStatusInicial() {
+    mostrarAvisoGlobal("");
+    alternarTela("carregando");
+    try {
+      const res = await apiGet("admin_status");
+      if (!res || !res.ok) {
+        mostrarAvisoGlobal(erroMsg(res, "Não foi possível consultar api/economia.php."), "erro");
+        alternarTela("login");
+        return;
+      }
+
+      if (res.needs_setup) {
+        alternarTela("setup");
+      } else if (res.authenticated) {
+        await carregarDashboard(true);
+      } else {
+        alternarTela("login");
+      }
+    } catch (e) {
+      mostrarAvisoGlobal("Não foi possível conectar a api/economia.php. Verifique se o servidor PHP está ativo.", "erro");
+      alternarTela("login");
+    }
+  }
+
+  // Setup Inicial
+  document.getElementById("formSetup").addEventListener("submit", async function (ev) {
+    ev.preventDefault();
+    mostrarAvisoGlobal("");
+    const s1 = document.getElementById("setupSenha").value;
+    const s2 = document.getElementById("setupSenha2").value;
+    if (s1.length < 6) {
+      mostrarAvisoGlobal("A senha inicial deve ter pelo menos 6 caracteres.", "erro");
+      return;
+    }
+    if (s1 !== s2) {
+      mostrarAvisoGlobal("As duas senhas digitadas não conferem.", "erro");
+      return;
+    }
+
+    const btn = document.getElementById("btnSalvarSetup");
+    btn.disabled = true;
+    try {
+      const res = await apiPost("setup_admin", {
+        password: s1,
+        pw: s1,
+        pix_key_type: document.getElementById("setupPixTipo").value,
+        pix_key: document.getElementById("setupPixChave").value.trim(),
+        pix_name: document.getElementById("setupPixNome").value.trim(),
+        pix_city: document.getElementById("setupPixCidade").value.trim(),
+        mp_access_token: document.getElementById("setupMpToken").value.trim() || undefined
+      });
+      btn.disabled = false;
+      if (!res || !res.ok || !res.token) {
+        mostrarAvisoGlobal(erroMsg(res, "Erro ao salvar configuração inicial."), "erro");
+        return;
+      }
+      salvarToken(res.token);
+      mostrarToast("🎉 Painel configurado com sucesso!");
+      await carregarDashboard(true);
+    } catch (e) {
+      btn.disabled = false;
+      mostrarAvisoGlobal("Falha de rede ao configurar o admin.", "erro");
+    }
+  });
+
+  // Login
+  document.getElementById("formLogin").addEventListener("submit", async function (ev) {
+    ev.preventDefault();
+    mostrarAvisoGlobal("");
+    const pw = document.getElementById("loginSenha").value;
+    const btn = document.getElementById("btnEntrarLogin");
+    btn.disabled = true;
+    try {
+      const res = await apiPost("admin_login", { password: pw, pw: pw });
+      btn.disabled = false;
+      if (!res || !res.ok) {
+        if (res && res.needs_setup) {
+          alternarTela("setup");
+          return;
+        }
+        mostrarAvisoGlobal(erroMsg(res, "Senha inválida."), "erro");
+        return;
+      }
+      salvarToken(res.token);
+      document.getElementById("loginSenha").value = "";
+      mostrarToast("🔓 Sessão autenticada!");
+      await carregarDashboard(true);
+    } catch (e) {
+      btn.disabled = false;
+      mostrarAvisoGlobal("Erro de conexão ao autenticar.", "erro");
+    }
+  });
+
+  // Logout e Refresh
+  document.getElementById("btnSairTopo").addEventListener("click", async function () {
+    try {
+      await apiPost("admin_logout", {});
+    } catch (e) {}
+    salvarToken("");
+    dadosDash = null;
+    alternarTela("login");
+    mostrarToast("Sessão encerrada.");
+  });
+
+  document.getElementById("btnAtualizarTopo").addEventListener("click", function () {
+    carregarDashboard(true);
+    mostrarToast("🔄 Dados atualizados!");
+  });
+
+  // Carregar Dashboard
+  async function carregarDashboard(preencherFormulario) {
+    try {
+      const res = await apiGet("admin_dashboard");
+      if (!res || !res.ok) {
+        if (res && (res._httpStatus === 401 || res.authenticated === false)) {
+          salvarToken("");
+          alternarTela("login");
+          mostrarAvisoGlobal("Sua sessão expirou. Faça login novamente.", "erro");
+          return;
+        }
+        mostrarAvisoGlobal(erroMsg(res, "Erro ao carregar o dashboard."), "erro");
+        return;
+      }
+
+      dadosDash = res;
+      alternarTela("dashboard");
+      renderizarDashboard(!!preencherFormulario || !formEditado);
+
+      if (!timerAutoRefresh) {
+        timerAutoRefresh = setInterval(function () {
+          carregarDashboard(false);
+        }, 12000);
+      }
+    } catch (e) {
+      mostrarAvisoGlobal("Erro de conexão ao atualizar o dashboard.", "erro");
+    }
+  }
+
+  function popularSelectItensPasse() {
+    const sel = document.getElementById("passeItem");
+    if (sel.options.length > 0) return;
+    const ids = Object.keys(NOMES_ITENS);
+    for (let i = 0; i < ids.length; i++) {
+      const id = ids[i];
+      sel.appendChild(h("option", { value: id, text: NOMES_ITENS[id] }));
+    }
+    sel.addEventListener("change", atualizarVisibilidadeCamposLotePasse);
+    atualizarVisibilidadeCamposLotePasse();
+  }
+
+  function atualizarVisibilidadeCamposLotePasse() {
+    const itemId = document.getElementById("passeItem").value;
+    const kind = KINDS_ITENS[itemId] || "";
+    document.getElementById("camposLotePasse").hidden = !(kind === "casa" || itemId === "combo_vip");
+  }
+
+  function renderizarDashboard(atualizarInputsConfig) {
+    if (!dadosDash) return;
+    popularSelectItensPasse();
+
+    const stats = dadosDash.stats || {};
+    document.getElementById("statOnline").textContent = String(stats.online_count || 0);
+    document.getElementById("statPendentes").textContent = String(stats.pending_count || 0);
+    document.getElementById("statAprovados").textContent = String(stats.approved_count || 0);
+    document.getElementById("statReceita").textContent = brl(stats.total_revenue || 0);
+    const statLojasEl = document.getElementById("statLojasVip");
+    if (statLojasEl) {
+      statLojasEl.textContent = (dadosDash.vagas_empresas ? dadosDash.vagas_empresas.ocupadas : 0) + " / 20";
+    }
+
+    const cfg = dadosDash.settings || {};
+    document.getElementById("txtCreatorSecret").textContent = cfg.creator_secret || "—";
+
+    const badgePix = document.getElementById("badgeStatusPix");
+    const pixAtivo = !!(cfg.pix_configured || (cfg.pix_key && String(cfg.pix_key).trim() !== ""));
+    badgePix.className = "badge " + (pixAtivo ? "badge-aprovado" : "badge-pendente");
+    badgePix.textContent = pixAtivo ? "🟢 PIX BRCode Ativo" : "🟡 Sem Chave PIX (Modo Reserva)";
+
+    // Atualizar badge Mercado Pago e banner/seção de automação
+    const bannerAuto = document.getElementById("bannerAutomacaoMp");
+    if (bannerAuto) bannerAuto.hidden = !cfg.mp_configured;
+    const kickerPed = document.getElementById("kickerPedidos");
+    const descPed = document.getElementById("descPedidos");
+    if (kickerPed) kickerPed.textContent = cfg.mp_configured ? "⚡ AUTOMAÇÃO MERCADO PAGO 24H" : "LIBERAÇÃO EM 1 CLIQUE";
+    if (descPed) {
+      descPed.textContent = cfg.mp_configured
+        ? "Aprovação e entrega 100% automáticas pelo servidor — nenhuma ação manual necessária."
+        : "Ao aprovar, o terreno já é construído e o jogador recebe o passe na tela em até 4s!";
+    }
+
+    const badgeMp = document.getElementById("badgeStatusMp");
+    if (badgeMp) {
+      if (cfg.mp_configured) {
+        badgeMp.style.background = "#009ee3";
+        badgeMp.style.color = "#fff";
+        badgeMp.textContent = "✅ Ativo: " + (cfg.mp_token_masked || "MP configurado");
+      } else {
+        badgeMp.style.background = "var(--borda)";
+        badgeMp.style.color = "var(--suave)";
+        badgeMp.textContent = "⚪ Não configurado (Modo Reserva / PIX Manual)";
+      }
+    }
+
+    if (atualizarInputsConfig) {
+      document.getElementById("cfgPixTipo").value = cfg.pix_key_type || "aleatoria";
+      document.getElementById("cfgPixChave").value = cfg.pix_key || "";
+      document.getElementById("cfgPixNome").value = cfg.pix_name || "ELTON CARAGUA PIXEL";
+      document.getElementById("cfgPixCidade").value = cfg.pix_city || "CARAGUATATUBA";
+      const cfgWaEl = document.getElementById("cfgWhatsappVip");
+      if (cfgWaEl) cfgWaEl.value = cfg.whatsapp_vip_url || "";
+      renderizarInputsPrecos(cfg.prices || {});
+      formEditado = false;
+    }
+
+    renderizarTabelaPedidos(dadosDash.orders || []);
+    renderizarTabelaLojasEmpresas(dadosDash.orders || []);
+    renderizarTabelaPasses(dadosDash.passes || []);
+    renderizarTabelaTerrenos(dadosDash.owned_lots || []);
+    renderizarEventoPolicia(dadosDash.policia || null);
+  }
+
+  function renderizarEventoPolicia(pol) {
+    const badge = document.getElementById("badgeStatusPolicia");
+    const resumo = document.getElementById("policiaResumoStatus");
+    const xerBox = document.getElementById("policiaXerifeBox");
+    const xerTxt = document.getElementById("policiaXerifeTxt");
+    const btnStart = document.getElementById("btnIniciarPolicia");
+    const btnCoroar = document.getElementById("btnCoroarPolicia");
+    const btnCancel = document.getElementById("btnCancelarPolicia");
+    const rankWrap = document.getElementById("policiaRankingAdminWrap");
+    if (!badge || !pol) return;
+
+    const cfg = pol.config || {};
+    const autoEl = document.getElementById("cfgPoliciaAuto21");
+    const durEl = document.getElementById("cfgPoliciaDuracao");
+    const npcEl = document.getElementById("cfgPoliciaNpcs");
+    if (autoEl && !autoEl.dataset.dirty) autoEl.value = cfg.auto_21h === false ? "0" : "1";
+    if (durEl && document.activeElement !== durEl && !durEl.dataset.dirty) durEl.value = String(cfg.duration_min || 10);
+    if (npcEl && document.activeElement !== npcEl && !npcEl.dataset.dirty) npcEl.value = String(cfg.npc_count || 18);
+
+    const xer = pol.xerife;
+    if (xer && xer.nome) {
+      xerBox.hidden = false;
+      xerTxt.textContent = xer.nome + (xer.arroba ? " (@" + xer.arroba + ")" : "") + " · " + (xer.pts || 0) + " pts (" + (xer.captures || 0) + " prisões)";
+    } else {
+      xerBox.hidden = true;
+    }
+
+    const ev = pol.event || {};
+    const status = ev.status || "idle";
+    const nowTs = Number(pol.now) || Math.floor(Date.now() / 1000);
+    const endsAt = Number(ev.ends_at) || 0;
+    const capCount = ev.captured ? Object.keys(ev.captured).length : 0;
+    const totalNpcs = Number(ev.npc_count) || (cfg.npc_count || 18);
+
+    if (status === "active" && endsAt > nowTs) {
+      const rest = endsAt - nowTs;
+      const m = Math.floor(rest / 60);
+      const s = rest % 60;
+      badge.className = "badge badge-aprovado";
+      badge.textContent = "🚨 AO VIVO · " + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+      resumo.textContent = "Operação em andamento! Presos: " + capCount + "/" + totalNpcs + " ladrões capturados. Todos os jogadores estão no modo noturno.";
+      btnStart.textContent = "🔄 Reiniciar Nova Rodada";
+      btnCoroar.hidden = false;
+      btnCancel.hidden = false;
+    } else {
+      badge.className = "badge badge-pendente";
+      badge.textContent = cfg.auto_21h === false ? "Modo Manual" : "⏰ Agendado 21h00 BRT";
+      resumo.textContent = cfg.auto_21h === false
+        ? "Disparo automático às 21h desativado. Use o botão abaixo para iniciar quando quiser."
+        : "Fuga da Cadeia 79 dispara automaticamente todo dia às 21h00 (Brasília), com pré-aviso às 20h55.";
+      btnStart.textContent = "🚨 Iniciar Polícia e Ladrão Agora";
+      btnCoroar.hidden = true;
+      btnCancel.hidden = true;
+    }
+
+    const scoresObj = ev.scores && typeof ev.scores === "object" ? ev.scores : {};
+    const rows = Object.keys(scoresObj).map(k => scoresObj[k]).filter(Boolean)
+      .sort((a, b) => (b.pts || 0) - (a.pts || 0) || (b.captures || 0) - (a.captures || 0));
+    if (rows.length > 0 && status === "active") {
+      rankWrap.hidden = false;
+      const tbl = h("table", { className: "tabela" });
+      tbl.innerHTML = "<thead><tr><th>#</th><th>Policial</th><th>@</th><th>Pontos</th><th>Prisões</th></tr></thead>";
+      const tb = h("tbody");
+      rows.slice(0, 8).forEach((r, idx) => {
+        tb.appendChild(h("tr", null,
+          h("td", null, String(idx + 1)),
+          h("td", null, String(r.nome || "Policial")),
+          h("td", null, r.arroba ? "@" + r.arroba : "—"),
+          h("td", null, String(r.pts || 0)),
+          h("td", null, String(r.captures || 0))
+        ));
+      });
+      tbl.appendChild(tb);
+      rankWrap.textContent = "";
+      rankWrap.appendChild(tbl);
+    } else {
+      rankWrap.hidden = true;
+      rankWrap.textContent = "";
+    }
+  }
+
+  function renderizarInputsPrecos(prices) {
+    const grid = document.getElementById("gridPrecos");
+    limpar(grid);
+    const ids = Object.keys(NOMES_ITENS);
+    for (let i = 0; i < ids.length; i++) {
+      const id = ids[i];
+      const val = prices[id] !== undefined ? Number(prices[id]).toFixed(2) : (PRECOS_PADRAO_ADMIN[id] || 1.99).toFixed(2);
+      const inp = h("input", {
+        type: "number",
+        step: "0.01",
+        min: "0.50",
+        max: "99999.99",
+        className: "input input-preco-item",
+        "data-item-id": id,
+        value: val,
+        onInput: function () { formEditado = true; }
+      });
+      grid.appendChild(
+        h(
+          "div",
+          { className: "preco-item" },
+          h("span", { text: NOMES_ITENS[id] }),
+          h("small", { text: id }),
+          inp
+        )
+      );
+    }
+  }
+
+  ["cfgPixTipo", "cfgPixChave", "cfgPixNome", "cfgPixCidade", "cfgNovaSenha", "cfgMpToken", "cfgWhatsappVip"].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener("input", function () { formEditado = true; });
+  });
+
+  // Segredo do Criador
+  document.getElementById("btnCopiarSegredo").addEventListener("click", function () {
+    const secret = dadosDash && dadosDash.settings ? dadosDash.settings.creator_secret : "";
+    copiar(secret, "👑 Código do Criador copiado!");
+  });
+
+  document.getElementById("btnGirarSegredo").addEventListener("click", async function () {
+    if (!window.confirm("Gerar um novo Segredo do Criador? O código anterior deixará de valer para novas ativações.")) {
+      return;
+    }
+    const res = await apiPost("admin_save_settings", { rotate_secret: true });
+    if (!res || !res.ok) {
+      mostrarAvisoGlobal(erroMsg(res, "Não foi possível girar o segredo."), "erro");
+      return;
+    }
+    mostrarToast("🎲 Novo Segredo do Criador gerado!");
+    await carregarDashboard(false);
+  });
+
+  // Salvar Configurações PIX & Preços
+  document.getElementById("formConfig").addEventListener("submit", async function (ev) {
+    ev.preventDefault();
+    const precos = {};
+    const inputs = document.querySelectorAll(".input-preco-item");
+    for (let i = 0; i < inputs.length; i++) {
+      const itemId = inputs[i].getAttribute("data-item-id");
+      const v = parseFloat(inputs[i].value);
+      if (itemId && Number.isFinite(v)) precos[itemId] = Number(v.toFixed(2));
+    }
+
+    const payload = {
+      pix_key_type: document.getElementById("cfgPixTipo").value,
+      pix_key: document.getElementById("cfgPixChave").value.trim(),
+      pix_name: document.getElementById("cfgPixNome").value.trim(),
+      pix_city: document.getElementById("cfgPixCidade").value.trim(),
+      whatsapp_vip_url: (document.getElementById("cfgWhatsappVip") ? document.getElementById("cfgWhatsappVip").value.trim() : ""),
+      prices: precos
+    };
+    const novaSenha = document.getElementById("cfgNovaSenha").value;
+    if (novaSenha) payload.password = novaSenha;
+    var mpTokenInput = document.getElementById("cfgMpToken");
+    if (mpTokenInput && mpTokenInput.value.trim()) payload.mp_access_token = mpTokenInput.value.trim();
+
+    const btn = document.getElementById("btnSalvarConfig");
+    btn.disabled = true;
+    const res = await apiPost("admin_save_settings", payload);
+    btn.disabled = false;
+
+    if (!res || !res.ok) {
+      mostrarAvisoGlobal(erroMsg(res, "Falha ao salvar configurações."), "erro");
+      return;
+    }
+    document.getElementById("cfgNovaSenha").value = "";
+    var mpTokenInput2 = document.getElementById("cfgMpToken");
+    if (mpTokenInput2) mpTokenInput2.value = "";
+    formEditado = false;
+    mostrarAvisoGlobal("");
+    mostrarToast("💾 Configurações PIX e preços salvos!");
+    await carregarDashboard(true);
+  });
+
+  // Remover Token Mercado Pago
+  var btnLimparMp = document.getElementById("btnLimparMpToken");
+  if (btnLimparMp) {
+    btnLimparMp.addEventListener("click", async function () {
+      if (!window.confirm("Remover o Token do Mercado Pago? O sistema voltará ao Modo Reserva / PIX Manual.")) return;
+      var res = await apiPost("admin_save_settings", { clear_mp_token: true });
+      if (!res || !res.ok) { mostrarAvisoGlobal(erroMsg(res, "Falha ao remover token MP."), "erro"); return; }
+      mostrarToast("🗑️ Token Mercado Pago removido.");
+      await carregarDashboard(true);
+    });
+  }
+
+  // Controles do Evento Noturno Polícia e Ladrão (21h)
+  (function () {
+    const autoEl = document.getElementById("cfgPoliciaAuto21");
+    const durEl = document.getElementById("cfgPoliciaDuracao");
+    const npcEl = document.getElementById("cfgPoliciaNpcs");
+    [autoEl, durEl, npcEl].forEach(el => {
+      if (el) el.addEventListener("change", () => { el.dataset.dirty = "1"; });
+    });
+
+    function lerCfgPolicia() {
+      return {
+        auto_21h: autoEl ? autoEl.value === "1" : true,
+        duration_min: durEl ? Math.max(3, Math.min(30, parseInt(durEl.value, 10) || 10)) : 10,
+        npc_count: npcEl ? Math.max(8, Math.min(28, parseInt(npcEl.value, 10) || 18)) : 18
+      };
+    }
+
+    async function enviarControlePolicia(op, extra, msgOk) {
+      const res = await apiPost("admin_policia_control", Object.assign({ op }, lerCfgPolicia(), extra || {}));
+      if (!res || !res.ok) {
+        mostrarAvisoGlobal(erroMsg(res, "Falha no controle do evento."), "erro");
+        return;
+      }
+      [autoEl, durEl, npcEl].forEach(el => { if (el) delete el.dataset.dirty; });
+      if (res.policia && dadosDash) {
+        dadosDash.policia = res.policia;
+        renderizarEventoPolicia(res.policia);
+      }
+      mostrarToast(msgOk);
+      await carregarDashboard(false);
+    }
+
+    const btnIni = document.getElementById("btnIniciarPolicia");
+    if (btnIni) btnIni.addEventListener("click", () => enviarControlePolicia("start", {}, "🚨 Polícia e Ladrão iniciado na cidade!"));
+    const btnCor = document.getElementById("btnCoroarPolicia");
+    if (btnCor) btnCor.addEventListener("click", () => enviarControlePolicia("stop", { finalize: true }, "🏆 Rodada encerrada e Xerife da Noite coroado!"));
+    const btnCan = document.getElementById("btnCancelarPolicia");
+    if (btnCan) btnCan.addEventListener("click", () => {
+      if (window.confirm("Cancelar a rodada atual sem premiar?")) {
+        enviarControlePolicia("stop", { finalize: false }, "⏹️ Operação cancelada.");
+      }
+    });
+    const btnCfg = document.getElementById("btnSalvarPoliciaCfg");
+    if (btnCfg) btnCfg.addEventListener("click", () => enviarControlePolicia("save_config", {}, "💾 Configuração do evento das 21h salva!"));
+    const btnLmp = document.getElementById("btnLimparXerife");
+    if (btnLmp) btnLmp.addEventListener("click", () => enviarControlePolicia("clear_xerife", {}, "Destaque Xerife removido."));
+  })();
+
+  // Tabela de Pedidos PIX
+  function renderizarTabelaPedidos(orders) {
+    document.getElementById("qtdPedidosTotal").textContent = String(orders.length);
+    const wrap = document.getElementById("listaPedidosWrap");
+    limpar(wrap);
+
+    if (!orders.length) {
+      wrap.appendChild(h("div", { className: "vazio", text: "Nenhum pedido PIX ou reserva registrado até o momento." }));
+      return;
+    }
+
+    const tbody = h("tbody");
+    for (let i = 0; i < orders.length; i++) {
+      const o = orders[i];
+      const st = o.status || "pending";
+      const temMp = !!(o.mp_payment_id && String(o.mp_payment_id).trim() !== "");
+      const payload = o.payload || {};
+      const loteTxt = payload.lot_id ? " · Lote: " + payload.lot_id : "";
+
+      let badgeStatus = h("span", {
+        className: "badge badge-pendente",
+        style: temMp ? { background: "rgba(56,189,248,0.16)", color: "#38bdf8", borderColor: "#38bdf8" } : null,
+        text: temMp ? "⚡ AGUARDANDO PIX (AUTO MP)" : "⏳ PENDENTE"
+      });
+      if (st === "approved") {
+        badgeStatus = h("span", {
+          className: "badge badge-aprovado",
+          text: temMp ? "✅ PAGO & ENTREGUE AUTO" : "✅ APROVADO"
+        });
+      } else if (st === "rejected") {
+        badgeStatus = h("span", {
+          className: "badge badge-rejeitado",
+          style: temMp ? { background: "rgba(148,163,184,0.14)", color: "#94a3b8", borderColor: "#475569" } : null,
+          text: "⚪ EXPIRADO / CANCELADO"
+        });
+      }
+
+      const celAcoes = h("div", { style: { display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center" } });
+
+      if (st === "pending") {
+        celAcoes.appendChild(
+          h(
+            "button",
+            {
+              type: "button",
+              className: temMp ? "btn btn-sm" : "btn btn-verde btn-sm",
+              title: temMp ? "O Mercado Pago aprova sozinho; use só se quiser dar cortesia sem aguardar o PIX." : "Aprovar e liberar passe",
+              onClick: function () { aprovarPedido(o.id); }
+            },
+            temMp ? "🎁 Cortesia Manual" : "✅ Aprovar & Liberar"
+          )
+        );
+        celAcoes.appendChild(
+          h(
+            "button",
+            {
+              type: "button",
+              className: temMp ? "btn btn-sm" : "btn btn-coral btn-sm",
+              onClick: function () { rejeitarPedido(o.id); }
+            },
+            temMp ? "🗑️ Cancelar" : "❌ Rejeitar"
+          )
+        );
+      } else if (o.pass_code) {
+        celAcoes.appendChild(
+          h(
+            "button",
+            {
+              type: "button",
+              className: "btn btn-ouro btn-sm mono",
+              onClick: function () { copiar(o.pass_code, "📋 Passe " + o.pass_code + " copiado!"); }
+            },
+            "📋 " + o.pass_code
+          )
+        );
+      } else {
+        celAcoes.appendChild(h("span", { style: { color: "var(--suave)" }, text: "—" }));
+      }
+
+      tbody.appendChild(
+        h(
+          "tr",
+          { className: st === "pending" ? "linha-pendente" : "" },
+          h("td", null, badgeStatus, h("div", { className: "mono", style: { marginTop: "4px", color: "#cbd5e1" }, text: o.id })),
+          h(
+            "td",
+            null,
+            h("strong", { text: o.buyer_name || "Visitante" }),
+            o.buyer_handle ? h("div", { style: { color: "var(--ciano)", fontSize: "12px" }, text: "@" + String(o.buyer_handle).replace(/^@+/, "") }) : null
+          ),
+          h(
+            "td",
+            null,
+            h("strong", { text: NOMES_ITENS[o.item_id] || o.item_id }),
+            h("div", { style: { color: "var(--suave)", fontSize: "11.5px" }, text: (o.kind || "") + loteTxt })
+          ),
+          h("td", { className: "mono", style: { color: "var(--verde)" }, text: brl(o.amount) }),
+          h("td", { style: { color: "var(--suave)", whiteSpace: "nowrap" }, text: formatarData(o.created_at) }),
+          h("td", null, celAcoes)
+        )
+      );
+    }
+
+    wrap.appendChild(
+      h(
+        "table",
+        null,
+        h(
+          "thead",
+          null,
+          h(
+            "tr",
+            null,
+            h("th", { text: "Status / Pedido" }),
+            h("th", { text: "Comprador" }),
+            h("th", { text: "Item" }),
+            h("th", { text: "Valor" }),
+            h("th", { text: "Data" }),
+            h("th", { text: "Ações / Passe" })
+          )
+        ),
+        tbody
+      )
+    );
+  }
+
+  function lerChecklistLojas() {
+    try {
+      const bruto = localStorage.getItem(CHAVE_CHECKLIST_LOJAS);
+      if (!bruto) return {};
+      const parsed = JSON.parse(bruto);
+      return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function salvarChecklistLojas(mapa) {
+    try {
+      localStorage.setItem(CHAVE_CHECKLIST_LOJAS, JSON.stringify(mapa || {}));
+    } catch (e) {}
+  }
+
+  function normalizarWhatsappBR(raw) {
+    const str = String(raw || "").trim();
+    let digits = str.replace(/\D+/g, "");
+    if (!digits) {
+      return { display: "Não informado", waDigits: "" };
+    }
+    if (digits.length === 12 && digits.charAt(0) === "0") {
+      digits = digits.slice(1);
+    }
+    let waDigits = digits;
+    let local = digits;
+    if (digits.slice(0, 2) === "55" && (digits.length === 12 || digits.length === 13)) {
+      waDigits = digits;
+      local = digits.slice(2);
+    } else if (digits.length === 10 || digits.length === 11) {
+      waDigits = "55" + digits;
+      local = digits;
+    } else if (digits.slice(0, 2) !== "55") {
+      waDigits = "55" + digits;
+    }
+
+    let display = str;
+    if (local.length === 11) {
+      display = "(" + local.slice(0, 2) + ") " + local.slice(2, 7) + "-" + local.slice(7);
+    } else if (local.length === 10) {
+      display = "(" + local.slice(0, 2) + ") " + local.slice(2, 6) + "-" + local.slice(6);
+    }
+    return {
+      display: display,
+      waDigits: waDigits.length >= 12 ? waDigits : ""
+    };
+  }
+
+  function criarBadgeSlaLoja(o, entregue) {
+    const st = o.status || "pending";
+    if (st === "rejected") {
+      return h("span", {
+        className: "badge",
+        style: { color: "var(--suave)", borderColor: "var(--borda)" },
+        text: "⚪ Pedido cancelado"
+      });
+    }
+    if (entregue) {
+      return h("span", {
+        className: "badge badge-aprovado",
+        text: "🏁 Loja no ar (Entregue)"
+      });
+    }
+    const payload = o.payload || {};
+    const criadoEm = Number(o.created_at) || Math.floor(Date.now() / 1000);
+    const deadlineTs = Number(payload.deadline_ts) || (criadoEm + 2 * 86400);
+    const agoraSec = Math.floor(Date.now() / 1000);
+    const diffSec = deadlineTs - agoraSec;
+    if (diffSec >= 0) {
+      const horasRest = Math.max(1, Math.ceil(diffSec / 3600));
+      return h("span", {
+        className: "badge badge-info",
+        text: "⚡ Faltam " + horasRest + "h (no prazo de 2 dias)"
+      });
+    }
+    const horasAtraso = Math.max(1, Math.ceil(Math.abs(diffSec) / 3600));
+    return h("span", {
+      className: "badge badge-rejeitado",
+      text: "⚠️ " + horasAtraso + "h além do prazo!"
+    });
+  }
+
+  // Tabela de Lojas & Empresas VIP
+  function renderizarTabelaLojasEmpresas(orders) {
+    const lista = Array.isArray(orders) ? orders : [];
+    const lojas = lista.filter(function (o) {
+      if (!o) return false;
+      const p = o.payload || {};
+      return o.kind === "loja" || o.item_id === "loja_empresa_vip" || Boolean(p.empresa || p.cnpj);
+    });
+
+    const qtdEl = document.getElementById("qtdLojasTotal");
+    if (qtdEl) qtdEl.textContent = String(lojas.length);
+
+    const wrap = document.getElementById("listaLojasEmpresasWrap");
+    if (!wrap) return;
+    limpar(wrap);
+
+    if (!lojas.length) {
+      wrap.appendChild(h("div", { className: "vazio", text: "Nenhuma loja ou empresa VIP cadastrada ainda. Compartilhe empresas.html nos Stories!" }));
+      return;
+    }
+
+    const aprovadas = lojas.filter(function (o) { return o.status === "approved"; }).length;
+    const pendentes = lojas.filter(function (o) { return o.status === "pending"; }).length;
+    const vagasOcupadas = (dadosDash && dadosDash.vagas_empresas && Number.isFinite(Number(dadosDash.vagas_empresas.ocupadas)))
+      ? Number(dadosDash.vagas_empresas.ocupadas)
+      : aprovadas;
+
+    wrap.appendChild(
+      h(
+        "div",
+        { className: "lojas-resumo-bar" },
+        h("span", { className: "badge badge-aprovado", text: "✅ " + aprovadas + " PIX Pagos (" + vagasOcupadas + "/20 vagas)" }),
+        h("span", { className: "badge badge-pendente", text: "⏳ " + pendentes + " Pendentes" }),
+        h("span", { className: "badge badge-info", text: "📋 " + lojas.length + " Cadastros" })
+      )
+    );
+
+    const checklistMap = lerChecklistLojas();
+    const tbody = h("tbody");
+
+    for (let i = 0; i < lojas.length; i++) {
+      const o = lojas[i];
+      const payload = o.payload || {};
+      const st = o.status || "pending";
+      const temMp = !!(o.mp_payment_id && String(o.mp_payment_id).trim() !== "");
+      const nomeEmpresa = String(payload.empresa || o.buyer_name || "Empresa VIP").trim();
+      const igBruto = String(o.buyer_handle || "").replace(/^@+/, "").trim();
+      const igSafe = igBruto.replace(/[^A-Za-z0-9._]/g, "");
+      const waInfo = normalizarWhatsappBR(payload.whatsapp);
+      const estadoCheck = checklistMap[o.id] || { fachada: false, stories: false, entregue: false };
+
+      let elInstagram = null;
+      if (igSafe) {
+        elInstagram = h("div", { style: { marginTop: "2px" } },
+          h("a", {
+            href: "https://instagram.com/" + igSafe,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            style: { color: "var(--ciano)", fontSize: "12px" },
+            text: "@" + igBruto
+          })
+        );
+      } else if (igBruto) {
+        elInstagram = h("div", { style: { color: "var(--ciano)", fontSize: "12px", marginTop: "2px" }, text: "@" + igBruto });
+      }
+
+      const celEmpresa = h(
+        "td",
+        null,
+        h("strong", { style: { fontSize: "14px", color: "#ffffff" }, text: nomeEmpresa }),
+        (o.buyer_name && o.buyer_name !== nomeEmpresa)
+          ? h("div", { style: { fontSize: "12px", color: "#cbd5e1" }, text: "Resp.: " + o.buyer_name })
+          : null,
+        payload.cnpj
+          ? h("div", { className: "mono", style: { color: "var(--ouro)", marginTop: "3px" }, text: "CNPJ/Doc: " + payload.cnpj })
+          : null,
+        elInstagram,
+        h("div", {
+          className: "mono",
+          style: { color: "var(--suave)", fontSize: "11px", marginTop: "4px" },
+          text: o.id + " · " + brl(o.amount) + " · " + formatarData(o.created_at)
+        })
+      );
+
+      let btnWa = null;
+      if (waInfo.waDigits) {
+        const msgWa = "Olá! Aqui é da equipe Caraguá Pixel 🏙️ Recebemos o pedido da loja " +
+          nomeEmpresa + " (" + o.id + "). " +
+          "Pode nos enviar por aqui a logo da sua empresa e detalhes para a fachada 3D? " +
+          "Sua loja será publicada na cidade em até 2 dias úteis! ⚡";
+        btnWa = h(
+          "a",
+          {
+            href: "https://wa.me/" + waInfo.waDigits + "?text=" + encodeURIComponent(msgWa),
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "btn btn-verde btn-sm"
+          },
+          "📲 Chamar no WhatsApp"
+        );
+      } else {
+        btnWa = h("span", { style: { color: "var(--suave)", fontSize: "11.5px" }, text: "Sem número válido" });
+      }
+
+      const celWhatsapp = h(
+        "td",
+        null,
+        h("div", { className: "mono", style: { color: "#e2e8f0", marginBottom: "6px", whiteSpace: "nowrap" }, text: waInfo.display }),
+        btnWa
+      );
+
+      const celLocalRamo = h(
+        "td",
+        null,
+        h("span", { className: "badge badge-info", text: "📍 " + (payload.local_preferido || "A definir") }),
+        h("div", { style: { fontWeight: "700", fontSize: "12.5px", marginTop: "5px", color: "#e2e8f0" }, text: "🏷️ " + (payload.ramo || "Comércio Local") }),
+        h("div", {
+          className: "obs-loja",
+          style: { marginTop: "4px", color: payload.observacoes ? "#cbd5e1" : "var(--suave)" },
+          text: payload.observacoes ? "💬 " + payload.observacoes : "Sem observações extras"
+        })
+      );
+
+      let badgePix = h("span", { className: "badge badge-pendente", text: "⏳ Pendente" });
+      if (st === "approved") {
+        badgePix = h("span", { className: "badge badge-aprovado", text: "✅ PIX Pago" });
+      } else if (st === "rejected") {
+        badgePix = h("span", { className: "badge badge-rejeitado", text: "⚪ Expirado / Cancelado" });
+      }
+
+      const slaWrap = h("div", { style: { marginTop: "6px" } }, criarBadgeSlaLoja(o, !!estadoCheck.entregue));
+
+      const celStatusSla = h(
+        "td",
+        null,
+        h("div", { style: { display: "flex", flexWrap: "wrap", gap: "6px", alignItems: "center" } },
+          badgePix,
+          st === "pending"
+            ? h(
+                "button",
+                {
+                  type: "button",
+                  className: temMp ? "btn btn-sm" : "btn btn-verde btn-sm",
+                  title: temMp ? "Mercado Pago aprova automaticamente; clique só para liberação manual." : "Aprovar pedido PIX e liberar vaga",
+                  onClick: function () { aprovarPedido(o.id); }
+                },
+                "✅ Aprovar"
+              )
+            : null,
+          (st === "approved" && o.pass_code)
+            ? h(
+                "button",
+                {
+                  type: "button",
+                  className: "btn btn-ouro btn-sm mono",
+                  onClick: function () { copiar(o.pass_code, "📋 Passe " + o.pass_code + " copiado!"); }
+                },
+                "🎟️ " + o.pass_code
+              )
+            : null
+        ),
+        slaWrap
+      );
+
+      const passos = [
+        { key: "fachada", label: "🎨 Fachada 3D" },
+        { key: "stories", label: "📢 Stories" },
+        { key: "entregue", label: "✅ Entregue" }
+      ];
+      const boxCheck = h("div", { className: "checklist-loja" });
+      for (let j = 0; j < passos.length; j++) {
+        const passo = passos[j];
+        const marcado = !!estadoCheck[passo.key];
+        const lbl = h("label", { className: "checklist-item" + (marcado ? " feito" : "") });
+        const cb = h("input", {
+          type: "checkbox",
+          onChange: function (ev) {
+            const mapaAtual = lerChecklistLojas();
+            const itemAtual = mapaAtual[o.id] || { fachada: false, stories: false, entregue: false };
+            itemAtual[passo.key] = !!ev.target.checked;
+            mapaAtual[o.id] = itemAtual;
+            salvarChecklistLojas(mapaAtual);
+            lbl.className = "checklist-item" + (itemAtual[passo.key] ? " feito" : "");
+            if (passo.key === "entregue") {
+              limpar(slaWrap);
+              slaWrap.appendChild(criarBadgeSlaLoja(o, !!itemAtual.entregue));
+            }
+            mostrarToast(passo.label + (itemAtual[passo.key] ? " marcado!" : " desmarcado."));
+          }
+        });
+        cb.checked = marcado;
+        lbl.appendChild(cb);
+        lbl.appendChild(document.createTextNode(passo.label));
+        boxCheck.appendChild(lbl);
+      }
+
+      tbody.appendChild(
+        h(
+          "tr",
+          { className: st === "pending" ? "linha-pendente" : "" },
+          celEmpresa,
+          celWhatsapp,
+          celLocalRamo,
+          celStatusSla,
+          h("td", null, boxCheck)
+        )
+      );
+    }
+
+    wrap.appendChild(
+      h(
+        "table",
+        null,
+        h(
+          "thead",
+          null,
+          h(
+            "tr",
+            null,
+            h("th", { text: "Empresa / CNPJ / @IG / Pedido" }),
+            h("th", { text: "WhatsApp" }),
+            h("th", { text: "Local & Ramo & Obs." }),
+            h("th", { text: "Status PIX & Prazo SLA (2 Dias)" }),
+            h("th", { text: "Checklist da Equipe" })
+          )
+        ),
+        tbody
+      )
+    );
+  }
+
+  async function aprovarPedido(orderId) {
+    const res = await apiPost("admin_approve_order", { id: orderId });
+    if (!res || !res.ok) {
+      mostrarAvisoGlobal(erroMsg(res, "Erro ao aprovar pedido."), "erro");
+      return;
+    }
+    const box = document.getElementById("boxPasseRecemAprovado");
+    limpar(box);
+    box.appendChild(
+      h(
+        "div",
+        { style: { display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "10px" } },
+        h("span", null, "✅ Pedido " + orderId + " aprovado! Passe gerado: ", h("strong", { className: "mono", text: res.pass_code || "" })),
+        res.pass_code
+          ? h(
+              "button",
+              {
+                type: "button",
+                className: "btn btn-ouro btn-sm",
+                onClick: function () { copiar(res.pass_code, "📋 Passe copiado!"); }
+              },
+              "📋 Copiar Passe"
+            )
+          : null
+      )
+    );
+    box.hidden = false;
+    mostrarToast("✅ Pedido aprovado e liberado!");
+    await carregarDashboard(false);
+  }
+
+  async function rejeitarPedido(orderId) {
+    if (!window.confirm("Deseja rejeitar o pedido " + orderId + "?")) return;
+    const res = await apiPost("admin_reject_order", { id: orderId });
+    if (!res || !res.ok) {
+      mostrarAvisoGlobal(erroMsg(res, "Erro ao rejeitar pedido."), "erro");
+      return;
+    }
+    mostrarToast("Pedido marcado como rejeitado.");
+    await carregarDashboard(false);
+  }
+
+  // Gerar Passe Manual
+  document.getElementById("formCriarPasse").addEventListener("submit", async function (ev) {
+    ev.preventDefault();
+    const itemId = document.getElementById("passeItem").value;
+    const kind = KINDS_ITENS[itemId] || "vip";
+    const metadata = {};
+    const lotId = document.getElementById("passeLotId").value.trim();
+    if ((kind === "casa" || itemId === "combo_vip") && lotId) {
+      metadata.lot_id = lotId;
+      metadata.style = kind === "casa" ? itemId : "sobrado";
+      metadata.color = document.getElementById("passeCor").value || "#f59e0b";
+      metadata.title = document.getElementById("passeTituloCasa").value.trim();
+    }
+
+    const btn = document.getElementById("btnCriarPasse");
+    btn.disabled = true;
+    const res = await apiPost("admin_create_pass", {
+      kind: kind,
+      item_id: itemId,
+      buyer_name: document.getElementById("passeNome").value.trim() || "Convidado VIP",
+      buyer_handle: document.getElementById("passeArroba").value.trim(),
+      custom_code: document.getElementById("passeCustomCode").value.trim(),
+      metadata: metadata
+    });
+    btn.disabled = false;
+
+    if (!res || !res.ok) {
+      mostrarAvisoGlobal(erroMsg(res, "Erro ao criar passe manual."), "erro");
+      return;
+    }
+
+    const code = res.code || res.pass_code || (res.pass && res.pass.code) || "";
+    const box = document.getElementById("boxPasseManualCriado");
+    limpar(box);
+    box.appendChild(
+      h("div", null, h("span", { className: "kicker", text: "PASSE CRIADO PRONTO PARA ENVIO" }), h("div", { className: "segredo-codigo", text: code }))
+    );
+    box.appendChild(
+      h(
+        "button",
+        {
+          type: "button",
+          className: "btn btn-ouro",
+          onClick: function () { copiar(code, "🎟️ Passe " + code + " copiado!"); }
+        },
+        "📋 Copiar Passe"
+      )
+    );
+    box.hidden = false;
+    document.getElementById("passeCustomCode").value = "";
+    mostrarToast("🎟️ Passe " + code + " gerado!");
+    await carregarDashboard(false);
+  });
+
+  function renderizarTabelaPasses(passes) {
+    const wrap = document.getElementById("listaPassesWrap");
+    limpar(wrap);
+    if (!passes.length) {
+      wrap.appendChild(h("div", { className: "vazio", text: "Nenhum passe VIP emitido ainda." }));
+      return;
+    }
+
+    const tbody = h("tbody");
+    const limite = Math.min(passes.length, 40);
+    for (let i = 0; i < limite; i++) {
+      const p = passes[i];
+      const usado = Number(p.redeemed) === 1;
+      tbody.appendChild(
+        h(
+          "tr",
+          null,
+          h("td", { className: "mono", style: { color: "var(--ouro)" }, text: p.code }),
+          h("td", { text: NOMES_ITENS[p.item_id] || p.item_id }),
+          h("td", { text: p.owner_name || "—" }),
+          h(
+            "td",
+            null,
+            usado
+              ? h("span", { className: "badge badge-aprovado", text: "✅ ATIVADO" })
+              : h("span", { className: "badge badge-info", text: "🟢 DISPONÍVEL" })
+          ),
+          h("td", { style: { color: "var(--suave)" }, text: formatarData(p.created_at) }),
+          h(
+            "td",
+            null,
+            h(
+              "button",
+              {
+                type: "button",
+                className: "btn btn-sm",
+                onClick: function () { copiar(p.code, "📋 Código " + p.code + " copiado!"); }
+              },
+              "📋 Copiar"
+            )
+          )
+        )
+      );
+    }
+
+    wrap.appendChild(
+      h(
+        "table",
+        null,
+        h(
+          "thead",
+          null,
+          h(
+            "tr",
+            null,
+            h("th", { text: "Código" }),
+            h("th", { text: "Item" }),
+            h("th", { text: "Destinatário / Dono" }),
+            h("th", { text: "Status" }),
+            h("th", { text: "Criado em" }),
+            h("th", { text: "Ação" })
+          )
+        ),
+        tbody
+      )
+    );
+  }
+
+  // Terrenos Ocupados
+  function renderizarTabelaTerrenos(lots) {
+    document.getElementById("qtdTerrenosOcupados").textContent = String(lots.length);
+    const wrap = document.getElementById("listaTerrenosWrap");
+    limpar(wrap);
+
+    if (!lots.length) {
+      wrap.appendChild(h("div", { className: "vazio", text: "Nenhum terreno ocupado no momento — todos estão À VENDA no 3D." }));
+      return;
+    }
+
+    const tbody = h("tbody");
+    for (let i = 0; i < lots.length; i++) {
+      const l = lots[i];
+      tbody.appendChild(
+        h(
+          "tr",
+          null,
+          h("td", { className: "mono", style: { color: "var(--ouro)" }, text: l.lot_id }),
+          h(
+            "td",
+            null,
+            h("strong", { text: l.owner_name || "Morador" }),
+            l.owner_handle ? h("div", { style: { color: "var(--ciano)", fontSize: "12px" }, text: "@" + String(l.owner_handle).replace(/^@+/, "") }) : null
+          ),
+          h(
+            "td",
+            null,
+            h("span", { className: "cor-bolinha", style: { backgroundColor: l.color || "#f59e0b" } }),
+            h("span", { text: (NOMES_ITENS[l.style] || l.style) + (l.title ? " · \"" + l.title + "\"" : "") })
+          ),
+          h("td", { className: "mono", text: "x: " + Math.round(Number(l.x) || 0) + ", z: " + Math.round(Number(l.z) || 0) }),
+          h("td", { style: { color: "var(--suave)" }, text: formatarData(l.created_at) }),
+          h(
+            "td",
+            null,
+            h(
+              "button",
+              {
+                type: "button",
+                className: "btn btn-coral btn-sm",
+                onClick: function () { removerTerreno(l.lot_id); }
+              },
+              "🗑️ Remover"
+            )
+          )
+        )
+      );
+    }
+
+    wrap.appendChild(
+      h(
+        "table",
+        null,
+        h(
+          "thead",
+          null,
+          h(
+            "tr",
+            null,
+            h("th", { text: "Lote" }),
+            h("th", { text: "Dono" }),
+            h("th", { text: "Estilo & Fachada" }),
+            h("th", { text: "Coordenadas" }),
+            h("th", { text: "Desde" }),
+            h("th", { text: "Ação" })
+          )
+        ),
+        tbody
+      )
+    );
+  }
+
+  async function removerTerreno(lotId) {
+    if (!window.confirm("Tem certeza que deseja liberar o terreno " + lotId + "? A casa será removida da cidade 3D.")) {
+      return;
+    }
+    const res = await apiPost("admin_delete_lot", { lot_id: lotId });
+    if (!res || !res.ok) {
+      mostrarAvisoGlobal(erroMsg(res, "Erro ao remover terreno."), "erro");
+      return;
+    }
+    mostrarToast("🗑️ Terreno " + lotId + " liberado!");
+    await carregarDashboard(false);
+  }
+
+  verificarStatusInicial();
+})();
+</script>
+</body>
+</html>

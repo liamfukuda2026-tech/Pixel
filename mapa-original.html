@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Prévia Histórica do Mapa · Caraguá Pixel</title>
+<meta name="description" content="Arquivo histórico da primeira prévia interativa do mapa noturno de Caraguá Pixel com 13 pontos da cidade, vereadores iniciais e mistérios.">
+<link rel="canonical" href="https://caraguapixel.online/mapa-original.html">
+<link rel="icon" type="image/png" href="img/brasao.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Rubik:wght@400;500;600&display=swap">
+<style>
+:root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+body { margin: 0; padding: 0; }
+img { max-width: 100%; }
+[hidden]:not([hidden=until-found i]) { display: none !important; }
+/* Layout: a cidade à noite. Mapa em retrato à esquerda, painel do lugar à direita; no celular, um embaixo do outro. */
+:root {
+  --night: #0c1320;      /* céu/fundo */
+  --panel: #141d2d;      /* painéis */
+  --line: #26324a;       /* bordas */
+  --window: #ffd23f;     /* luz de janela: lugares */
+  --xmas: #ff5a52;       /* vermelho natal: mistérios */
+  --leaf: #4fd06f;       /* verde: novo */
+  --text: #ebe6d6;
+  --muted: #8f99ad;
+  --pixel: "Silkscreen", "Courier New", monospace;
+  --body: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--night); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1px 1px at 12% 18%, #ffd23f88 50%, transparent 51%), radial-gradient(1px 1px at 78% 9%, #ffffff55 50%, transparent 51%),
+  radial-gradient(1px 1px at 52% 30%, #ffd23f66 50%, transparent 51%), radial-gradient(1px 1px at 88% 44%, #ffffff44 50%, transparent 51%), radial-gradient(1px 1px at 30% 62%, #ffd23f55 50%, transparent 51%); }
+.wrap { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-bottom: 18px; border-bottom: 2px solid var(--line); }
+.brand { font-family: var(--pixel); font-weight: 700; font-size: 18px; letter-spacing: .02em; display: flex; align-items: center; gap: 10px; }
+.brand i { width: 18px; height: 18px; background: var(--window); box-shadow: 4px 4px 0 #8a6a10; display: inline-block; }
+.follow { font-family: var(--pixel); font-size: 13px; color: #1a1408; background: var(--window); padding: 9px 14px; text-decoration: none; box-shadow: 3px 3px 0 #8a6a10; }
+.follow:focus-visible, .pin:focus-visible, .chip:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.hero { text-align: center; padding-block: 34px 18px; }
+.eyebrow { font-family: var(--pixel); color: var(--window); font-size: 12px; letter-spacing: .18em; }
+h1 { font-family: var(--pixel); font-weight: 700; font-size: clamp(30px, 6vw, 56px); line-height: 1.05; margin: 10px 0 14px; text-wrap: balance; }
+h1 span { color: var(--window); }
+.lede { color: var(--muted); max-width: 58ch; margin: 0 auto; }
+.stats { display: flex; justify-content: center; gap: 10px 22px; flex-wrap: wrap; margin-top: 18px; font-family: var(--pixel); font-size: 12px; color: var(--muted); }
+.stats b { color: var(--text); font-weight: 700; font-variant-numeric: tabular-nums; }
+.legend { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-size: 14px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend i { width: 10px; height: 10px; display: inline-block; }
+.stage { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 28px; margin-top: 26px; align-items: start; }
+.mapcol { display: grid; gap: 10px; min-width: 0; }
+.maptools { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.zoom { font-family: var(--pixel); font-size: 13px; color: #1a1408; background: var(--window); border: 2px solid #0b0b10; padding: 8px 12px; cursor: pointer; box-shadow: 3px 3px 0 #8a6a10; }
+.zoom:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.mapbox { position: relative; border: 3px solid var(--line); background: #152a44; box-shadow: 6px 6px 0 #070b12; overflow: auto; max-height: none; }
+.mapbox.zoomed { max-height: 86vh; }
+.map { position: relative; width: 100%; aspect-ratio: 1080 / 1920; }
+.mapbox.zoomed .map { width: 220%; }
+.map img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+.north { position: absolute; top: 12px; right: 12px; font-family: var(--pixel); font-size: 13px; background: #0c1320cc; border: 2px solid var(--line); padding: 5px 8px; text-align: center; line-height: 1.1; }
+.pin { position: absolute; transform: translate(-50%, -50%); width: 40px; height: 40px; border: 3px solid #0b0b10; background: var(--window); color: #1a1408;
+  font-family: var(--pixel); font-weight: 700; font-size: 18px; display: grid; place-items: center; cursor: pointer; padding: 0; box-shadow: 3px 3px 0 #0b0b10aa; }
+.pin .lbl { position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); white-space: nowrap; font-family: var(--pixel); font-size: 12px; font-weight: 400;
+  color: var(--text); background: #0c1320e6; border: 2px solid var(--line); padding: 2px 6px; pointer-events: none; }
+.pin.on .lbl, .mapbox.zoomed .pin .lbl { display: block; }
+.pin .lbl { display: none; }
+.pin.mystery { background: var(--xmas); color: #fff; }
+.pin.new { background: var(--leaf); }
+.pin.on { outline: 3px solid #fff; outline-offset: 2px; animation: bob 1.1s steps(2) infinite; }
+@keyframes bob { 50% { transform: translate(-50%, calc(-50% - 4px)); } }
+@media (prefers-reduced-motion: reduce) { .pin.on { animation: none; } }
+.card { background: var(--panel); border: 3px solid var(--line); box-shadow: 6px 6px 0 #070b12; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); min-width: 0; }
+.shot { position: relative; aspect-ratio: 4 / 3; background: #0b0f18; }
+.shot img { width: 100%; height: 100%; object-fit: cover; display: block; image-rendering: pixelated; }
+.tag { position: absolute; left: 12px; top: 12px; font-family: var(--pixel); font-size: 11px; padding: 5px 8px; background: var(--window); color: #1a1408; border: 2px solid #0b0b10; }
+.tag.mystery { background: var(--xmas); color: #fff; }
+.tag.new { background: var(--leaf); }
+.body { padding: 20px 22px 24px; display: grid; gap: 12px; }
+.body h2 { font-family: var(--pixel); font-size: clamp(20px, 3vw, 28px); margin: 0; line-height: 1.15; text-wrap: balance; }
+.body p { margin: 0; max-width: 62ch; }
+.people { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 6px 14px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 14px; }
+.people li { display: flex; gap: 8px; align-items: baseline; border-bottom: 1px dashed var(--line); padding-bottom: 4px; min-width: 0; }
+.people li b { font-weight: 600; }
+.people li span { color: var(--muted); }
+.people li em { font-style: normal; font-family: var(--pixel); font-size: 10px; color: var(--window); min-width: 2ch; font-variant-numeric: tabular-nums; }
+.note { font-size: 13px; color: var(--muted); }
+.appears { border-top: 2px solid var(--line); padding-top: 12px; display: grid; gap: 2px; }
+.appears small { font-family: var(--pixel); font-size: 10px; letter-spacing: .14em; color: var(--muted); }
+.appears span { font-weight: 500; }
+.lists { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+.lists h3 { font-family: var(--pixel); font-size: 13px; letter-spacing: .14em; color: var(--muted); margin: 0 0 10px; font-weight: 400; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 500 14px var(--body); color: var(--text); background: var(--panel); border: 2px solid var(--line); padding: 7px 11px; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }
+.chip i { width: 8px; height: 8px; background: var(--window); display: inline-block; }
+.chip.mystery i { background: var(--xmas); }
+.chip.new i { background: var(--leaf); }
+.chip.on { border-color: var(--window); }
+footer { margin-top: 44px; color: var(--muted); font-size: 13px; text-align: center; }
+@media (max-width: 820px) {
+  .stage { grid-template-columns: 1fr; }
+  .card { position: static; }
+  .lists { grid-template-columns: 1fr; }
+  .pin { width: 32px; height: 32px; font-size: 14px; }
+  .mapbox.zoomed .map { width: 260%; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><i></i>Caraguá Pixel</div>
+    <a class="follow" href="https://www.instagram.com/caraguapixel/" target="_blank" rel="noopener noreferrer nofollow">Seguir</a>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">MAPA · PRÉVIA</div>
+    <h1>O mapa de <span>Caraguá Pixel</span></h1>
+    <p class="lede">A cidade que nasceu vazia e agora tem morador em cada janela acesa. Toque num ponto do mapa para ver o lugar de perto.</p>
+    <div class="stats"><span><b>936</b> moradores</span><span><b>15</b> vereadores</span><span><b>8</b> lojas para alugar</span><span><b>1</b> árvore de Natal</span></div>
+    <div class="legend"><span><i style="background:var(--window)"></i>Lugares da cidade</span><span><i style="background:var(--leaf)"></i>Novo</span><span><i style="background:var(--xmas)"></i>Mistérios</span></div>
+  </section>
+
+  <section class="stage">
+    <div class="mapcol">
+      <div class="maptools"><span>Toque num ponto para ver de perto</span><button class="zoom" id="zoom" type="button" aria-pressed="false">+ Ampliar mapa</button></div>
+      <div class="mapbox" id="mapbox">
+        <div class="map" id="map">
+          <img src="img/mapa.jpg" alt="Mapa de Caraguá Pixel visto de cima, à noite: casas, prédios na orla, praça com árvore de Natal, praia e mar" width="1080" height="1920">
+          <div class="north" aria-hidden="true">N<br>▲</div>
+        </div>
+      </div>
+    </div>
+    <article class="card" id="card" aria-live="polite">
+      <div class="shot"><img id="shot" alt="" width="1080" height="810"><div class="tag" id="tag"></div></div>
+      <div class="body">
+        <h2 id="name"></h2>
+        <p id="text"></p>
+        <ul class="people" id="people" hidden></ul>
+        <p class="note" id="note" hidden></p>
+        <div class="appears"><small>APARECE EM</small><span id="ep"></span></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="lists">
+    <div><h3>LUGARES DA CIDADE</h3><div class="chips" id="chipsPlaces"></div></div>
+    <div><h3>MISTÉRIOS</h3><div class="chips" id="chipsMyst"></div></div>
+  </section>
+
+  <footer>Prévia do mapa · os números são de 16/11, às 22h36 · Caraguá Pixel, a cidade dos seguidores</footer>
+</div>
+
+<script>
+const VEREADORES = [['Enzo','pescador'],['Marco','professor'],['Chris','médico'],['Bruno','fisioterapeuta'],['Vitória','fisioterapeuta'],['Julia','professora'],['Mayck','advogado'],['Vinicius','mecânico'],['Pedro','salva-vidas'],['Wesley','entregador'],['Breno','engenheiro civil'],['Vitor','gari'],['Francesco','tele-entrega'],['Artur','salva-vidas'],['Erick','policial']];
+const PLACES = [
+  { id: 'praca', name: 'Praça de Natal', x: 147, y: 190, kind: 'new', tag: 'NOVO NA CIDADE',
+    text: 'O coração de Caraguá Pixel. A maior árvore de Natal da cidade fica acesa toda noite, com presentes embaixo, luzinhas em todas as árvores da praça e o arco vermelho na entrada. É aqui que os moradores se encontram depois do trabalho.',
+    ep: 'Especial de Natal · em breve' },
+  { id: 'camara', name: 'Câmara Municipal', x: 75, y: 178, kind: 'place', tag: 'LUGAR DA CIDADE',
+    text: 'Os 15 primeiros moradores que comentaram nome e profissão viraram vereadores. Cada um tem uma cadeira no plenário e um projeto por semana para defender.',
+    people: VEREADORES.map((p, i) => [i + 1, ...p]), note: 'Lista provisória: ainda depende da enquete sobre profissões de crime.',
+    ep: 'Dia 1 · A cidade vazia' },
+  { id: 'prefeitura', name: 'Prefeitura', x: 148, y: 258, kind: 'place', tag: 'LUGAR DA CIDADE',
+    text: 'Ficou trancada até a cidade chegar a 100 moradores. Já passou de 900. A cadeira de prefeito está vazia e a eleição começa no próximo episódio.',
+    ep: 'Dia 2 · em breve' },
+  { id: 'forum', name: 'Fórum', x: 75, y: 258, kind: 'place', tag: 'LUGAR DA CIDADE',
+    text: 'Onde a cidade resolve as brigas. Tem vaga para advogado, juiz, promotor e defensor. O primeiro caso ainda não chegou.',
+    ep: 'Ainda não apareceu' },
+  { id: 'escola', name: 'Escola e quadra', x: 74, y: 92, kind: 'place', tag: 'LUGAR DA CIDADE',
+    text: 'A primeira escola da cidade, com quadra coberta do lado. Os professores que comentaram no Dia 1 dão aula aqui.',
+    ep: 'Dia 1 · A cidade vazia' },
+  { id: 'upa', name: 'UPA', x: 147, y: 90, kind: 'place', tag: 'LUGAR DA CIDADE',
+    text: 'Médicos, enfermeiros e fisioterapeutas da cidade trabalham aqui. O estacionamento também ganhou luzinha de Natal.',
+    ep: 'Dia 1 · A cidade vazia' },
+  { id: 'comercio', name: 'Rua do Comércio', x: 75, y: 346, kind: 'place', tag: 'VAGAS ABERTAS',
+    text: 'Oito lojas, todas com placa de ALUGA-SE. Cada fachada vai ganhar o nome de uma loja real de Caraguá. Empresário: manda o CNPJ, o nome da loja e o @ na DM da @caraguapixel.',
+    ep: 'Rua do Comércio · Reel do convite' },
+  { id: 'predios', name: 'Prédios da orla', x: 148, y: 372, kind: 'place', tag: 'LUGAR DA CIDADE',
+    text: 'Seis prédios de frente pro mar, onde mora a maior parte da cidade. Cada janela acesa é um morador, e quem enfeitou a varanda já colocou o pisca-pisca.',
+    ep: 'Ainda não apareceu' },
+  { id: 'praia', name: 'Praia e salva-vidas', x: 204, y: 326, kind: 'place', tag: 'LUGAR DA CIDADE',
+    text: 'A orla inteira da cidade, com o posto de salva-vidas no meio. Dois vereadores trabalham aqui: Pedro e Artur.',
+    ep: 'Dia 1 · A cidade vazia' },
+  { id: 'porto', name: 'Mar dos pescadores', x: 234, y: 398, kind: 'place', tag: 'LUGAR DA CIDADE',
+    text: 'O barco sai antes do sol nascer. O primeiro vereador da cidade, Enzo, é pescador.',
+    ep: 'Dia 1 · A cidade vazia' },
+  { id: 'obras', name: 'Bairro Novo', x: 75, y: 426, kind: 'new', tag: 'EM OBRAS',
+    text: 'Quem chegou depois da meia-noite de 16/11 vai morar aqui. Os terrenos já estão marcados e o guindaste não para. Próxima leva, cargos novos, vídeo novo.',
+    ep: 'A lista fecha à meia-noite' },
+  { id: 'morro', name: 'Morro Santo Antônio', x: 18, y: 56, kind: 'mystery', tag: 'MISTÉRIO',
+    text: 'Dá para ver uma luz piscando lá em cima toda noite. Nenhum morador subiu ainda.', ep: '?' },
+  { id: 'ilha', name: 'A ilha do outro lado', x: 256, y: 196, kind: 'mystery', tag: 'MISTÉRIO',
+    text: 'Do outro lado do canal. Ninguém da cidade atravessou, e ninguém sabe quem mora lá.', ep: '?' },
+];
+const $ = id => document.getElementById(id);
+const map = $('map');
+const pins = {}, chips = {};
+for (const p of PLACES) {
+  const b = document.createElement('button');
+  b.className = 'pin' + (p.kind === 'mystery' ? ' mystery' : p.kind === 'new' ? ' new' : '');
+  b.style.left = (p.x / 270 * 100) + '%'; b.style.top = (p.y / 480 * 100) + '%';
+  b.textContent = p.kind === 'mystery' ? '?' : p.kind === 'new' ? '★' : '■';
+  const lb = document.createElement('span'); lb.className = 'lbl'; lb.textContent = p.name; b.appendChild(lb);
+  b.setAttribute('aria-label', p.name); b.title = p.name;
+  b.addEventListener('click', () => show(p.id, true));
+  map.appendChild(b); pins[p.id] = b;
+  const c = document.createElement('button');
+  c.className = 'chip' + (p.kind === 'mystery' ? ' mystery' : p.kind === 'new' ? ' new' : '');
+  c.innerHTML = '<i></i>' + p.name; c.addEventListener('click', () => show(p.id, true));
+  (p.kind === 'mystery' ? $('chipsMyst') : $('chipsPlaces')).appendChild(c); chips[p.id] = c;
+}
+function show(id, fromClick) {
+  const p = PLACES.find(q => q.id === id) || PLACES[0];
+  for (const k in pins) { pins[k].classList.toggle('on', k === p.id); chips[k].classList.toggle('on', k === p.id); }
+  $('shot').src = 'img/' + p.id + '.jpg'; $('shot').alt = 'Vista de perto: ' + p.name;
+  const tag = $('tag'); tag.textContent = p.tag; tag.className = 'tag' + (p.kind === 'mystery' ? ' mystery' : p.kind === 'new' ? ' new' : '');
+  $('name').textContent = p.name; $('text').textContent = p.text; $('ep').textContent = p.ep;
+  const ul = $('people'); ul.innerHTML = '';
+  if (p.people) { for (const [n, nome, prof] of p.people) { const li = document.createElement('li'); li.innerHTML = `<em>${String(n).padStart(2, '0')}</em><b></b><span></span>`; li.querySelector('b').textContent = nome; li.querySelector('span').textContent = prof; ul.appendChild(li); } ul.hidden = false; } else ul.hidden = true;
+  $('note').hidden = !p.note; $('note').textContent = p.note || '';
+  if (fromClick) { if (location.hash !== '#' + p.id) history.replaceState(null, '', '#' + p.id); if (window.innerWidth <= 820) $('card').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+}
+const box = $('mapbox'), zoomBtn = $('zoom');
+function centerOn(id) {
+  const p = PLACES.find(q => q.id === id); if (!p || !box.classList.contains('zoomed')) return;
+  const m = $('map'); box.scrollTo({ left: p.x / 270 * m.clientWidth - box.clientWidth / 2, top: p.y / 480 * m.clientHeight - box.clientHeight / 2, behavior: 'smooth' });
+}
+zoomBtn.addEventListener('click', () => {
+  const on = box.classList.toggle('zoomed'); zoomBtn.setAttribute('aria-pressed', on); zoomBtn.textContent = on ? '− Ver mapa inteiro' : '+ Ampliar mapa';
+  requestAnimationFrame(() => centerOn((location.hash || '#praca').slice(1)));
+});
+for (const p of PLACES) { pins[p.id].addEventListener('click', () => centerOn(p.id)); chips[p.id].addEventListener('click', () => centerOn(p.id)); }
+const fromHash = () => show((location.hash || '#praca').slice(1));
+window.addEventListener('hashchange', fromHash); fromHash();
+</script>
+
+</body></html>

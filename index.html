@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Caraguá Pixel · Explore a cidade de Caraguatatuba em 3D</title>
+<meta name="description" content="Explore Caraguá Pixel em 3D: 1.149 moradores, Prefeita Julia, Câmara, Shopping, Parque, Pixel Motors, Boulevard da Praia, Hospital Municipal e UPA 24h.">
+<link rel="canonical" href="https://caraguapixel.online/">
+<meta property="og:site_name" content="Caraguá Pixel">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Caraguá Pixel · Explore a cidade de Caraguatatuba em 3D">
+<meta property="og:description" content="Explore Caraguá Pixel em 3D: 1.149 moradores, Prefeita Julia, Câmara, Shopping, Parque, Pixel Motors, Boulevard da Praia, Hospital Municipal e UPA 24h.">
+<meta property="og:url" content="https://caraguapixel.online/">
+<meta property="og:image" content="https://caraguapixel.online/img/banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Caraguá Pixel · Explore a cidade de Caraguatatuba em 3D">
+<meta name="twitter:description" content="Explore Caraguá Pixel em 3D: 1.149 moradores, Prefeita Julia, Câmara, Shopping, Parque, Pixel Motors, Boulevard da Praia, Hospital Municipal e UPA 24h.">
+<meta name="twitter:image" content="https://caraguapixel.online/img/banner.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="img/brasao.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Nunito+Sans:opsz,wght@6..12,500;6..12,700;6..12,800&family=Pixelify+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.min.css?v=20261118pvp4">
+<link rel="stylesheet" href="css/jogo.min.css?v=20261118pvp4">
+<link rel="stylesheet" href="css/chat.min.css?v=20261118pvp4">
+<link rel="stylesheet" href="css/loja.min.css?v=20261118pvp4">
+<link rel="stylesheet" href="css/evento.min.css?v=20261118pvp4">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://caraguapixel.online/#website",
+      "url": "https://caraguapixel.online/",
+      "name": "Caraguá Pixel",
+      "inLanguage": "pt-BR",
+      "description": "Cidade voxel 3D interativa inspirada em Caraguatatuba com 1.149 moradores, Prefeita Julia, chat multiplayer ao vivo e marcos urbanos."
+    },
+    {
+      "@type": "VideoGame",
+      "@id": "https://caraguapixel.online/#game",
+      "name": "Caraguá Pixel 3D",
+      "url": "https://caraguapixel.online/",
+      "inLanguage": "pt-BR",
+      "gamePlatform": "Web Browser",
+      "applicationCategory": "Game",
+      "operatingSystem": "Any",
+      "genre": ["Multiplayer", "Sandbox", "Voxel"],
+      "image": "https://caraguapixel.online/img/banner.png",
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Caraguatatuba, SP, Brasil"
+      },
+      "description": "Mundo 3D em Three.js de Caraguatatuba em pixel art com 1.149 moradores em 1.048 casas e 136 quarteirões, Câmara com 15 vereadores e gestão da Prefeita Julia."
+    }
+  ]
+}
+</script>
+</head>
+<body class="pagina-jogo">
+
+<header class="topo">
+  <nav class="nav">
+    <a class="marca" href="/"><img src="img/brasao.png" alt="Brasão de Caraguá Pixel" width="36" height="36"><span>Caraguá Pixel</span></a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="links">
+      <li><a href="/" class="ativo">Jogar</a></li>
+      <li><a href="sobre.html">A Cidade</a></li>
+      <li><a href="lore.html">Lore</a></li>
+      <li><a href="mapa.html">Mapa</a></li>
+      <li><a href="moradores.html">Moradores</a></li>
+      <li><a href="sugestoes.html">Sugestões</a></li>
+      <li><a href="empresas.html">🏢 Empresas VIP</a></li>
+      <li><a href="apoie.html" class="link-apoiar" title="Seja um pilar da cidade">💜 Apoiar</a></li>
+    </ul>
+    <a class="btn btn-ouro btn-pequeno seguir" href="https://www.instagram.com/caraguapixel/" data-instagram target="_blank" rel="noopener noreferrer nofollow">Seguir</a>
+  </nav>
+</header>
+
+<div id="cena" aria-label="Cidade 3D Caragua Pixel"></div>
+
+<header class="placa">
+  <p class="sobre">Caraguatatuba · 23°37′ S · 45°25′ O · Cidade 3D em tempo real</p>
+  <h1>Caragua <span>Pixel</span></h1>
+  <p class="numeros" id="numeros">Carregando a cidade…</p>
+  <ul class="lugares" id="lugares"></ul>
+</header>
+
+<div class="hud-acoes">
+  <a id="btnApoiar" class="botao roxo-apoia" href="https://apoia.se/caraguapixel" target="_blank" rel="noopener noreferrer nofollow" title="Apoie Caraguá Pixel no Apoia.se">💜 Apoie</a>
+  <button id="abrir" class="botao" type="button" aria-expanded="false" aria-controls="painel">🔍 Ache seu @ <span id="qtd"></span></button>
+</div>
+
+<aside id="painel" hidden>
+  <label for="busca">Buscar morador ou @</label>
+  <input id="busca" type="search" placeholder="Digite seu @ do Instagram ou nome" autocomplete="off" autocapitalize="none" spellcheck="false">
+  <div class="filtros" id="filtros" role="group" aria-label="Filtrar por lugar"></div>
+  <p id="contagem"></p>
+  <ul id="lista"></ul>
+  <p class="nota">Lista oficial com os 1.149 moradores de Caraguá Pixel. Use os filtros acima para navegar por Casas, Câmara Municipal (15 vereadores), Prefeitura (Prefeita Julia), Cadeia, motoristas de Uber, 12 lojas para alugar, Parque de Diversões, Boulevard da Praia, Academia Pixel Fit e Shopping Caragua Pixel. Toque em um nome para voar até ele; 🔗 copia o link direto e ↗ abre o perfil no Instagram. · <a href="https://apoia.se/caraguapixel" target="_blank" rel="noopener noreferrer nofollow">💜 Apoie no Apoia.se</a></p>
+</aside>
+
+<canvas id="mapa" width="380" height="200" aria-label="Mapa da cidade: toque para ir a um lugar" tabindex="0"></canvas>
+<p id="dica">WASD ou setas para andar · Shift corre · Espaço pula · teclas 1 a 4 fazem emotes · Enter abre o chat · arraste para girar · roda do mouse dá zoom · clique em casas, pessoas e carros</p>
+<div id="joy" hidden><div id="pino"></div></div>
+<p id="aviso" role="status" aria-live="polite"></p>
+<div id="semgl" hidden>
+  <p><b>Seu navegador não abriu o mapa 3D interativo de Caraguá Pixel.</b></p>
+  <p>Ative a aceleração de hardware no navegador, atualize a página ou abra em Chrome, Edge ou Firefox atualizado para caminhar pelos 136 quarteirões de Caraguatatuba em pixel art.</p>
+  <p>Enquanto isso, você pode explorar todas as áreas da cidade sem 3D: <a href="mapa.html">Mapa interativo</a>, <a href="sobre.html">Sobre a cidade</a>, <a href="lore.html">História e episódios</a>, <a href="moradores.html">Montador de moradores</a>, <a href="empresas.html">Empresas VIP</a> e <a href="apoie.html">Apoia.se</a>.</p>
+</div>
+
+<section id="chat-online" aria-label="Chat da cidade e jogadores online"></section>
+<div id="loja-hud" aria-label="Loja, ações rápidas e controles"></div>
+
+<!-- Modal de Apoio aos 4 minutos -->
+<div id="modal-apoio" class="modal-apoio" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-apoio">
+  <div class="modal-apoio-overlay" id="overlayApoio"></div>
+  <div class="modal-apoio-card">
+    <button class="modal-apoio-fechar" id="fecharApoio" aria-label="Fechar mensagem" type="button">✕</button>
+    <div class="modal-apoio-badge">
+      <span class="badge-coracao">💜</span>
+      <span class="badge-tempo">4 MINUTOS EM CARAGUÁ PIXEL</span>
+    </div>
+    <h2 id="titulo-apoio">Gostando de explorar a <span>Cidade</span>?</h2>
+    <p class="modal-apoio-texto">
+      Caraguá Pixel nasceu de uma orla vazia em Caraguatatuba e hoje reúne 1.149 moradores em 1.048 casas e 136 quarteirões sob gestão da Prefeita Julia (@julia_silxo) e de 15 vereadores na Câmara Municipal — com Shopping Caragua Pixel, Parque de Diversões e Carreta da Alegria, Pixel Motors, Boulevard da Praia, Hospital Municipal, UPA 24h, Galeria Pixel com vitrines comerciais, Academia Pixel Fit e a Cadeia 79.
+    </p>
+    <p class="modal-apoio-sub">
+      Caminhe ou dirija veículos pela cidade, converse no chat multiplayer, jogue futebol ou participe do evento noturno Polícia e Ladrão às 21h. Para manter o servidor online, financiar novos episódios animados e expandir os próximos bairros e a Ilha do Outro Lado, considere apoiar o projeto independente no <strong>Apoia.se</strong>.
+    </p>
+    <div class="modal-apoio-acoes">
+      <a class="btn-apoia-principal" href="https://apoia.se/caraguapixel" target="_blank" rel="noopener noreferrer nofollow">
+        <span>💜 Apoiar no Apoia.se</span>
+        <small>apoia.se/caraguapixel ↗</small>
+      </a>
+      <div class="modal-apoio-secundarios">
+        <a class="btn-apoia-info" href="apoie.html">Ver detalhes e recompensas</a>
+        <button class="btn-apoia-continuar" id="btnContinuarJogando" type="button">Continuar jogando</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<noscript>
+  <div style="padding:16px;background:#0d1020;color:#eef2fa;font-family:sans-serif;text-align:center">
+    <strong>Caraguá Pixel 3D</strong> precisa de JavaScript ativo para renderizar a cidade interativa de Caraguatatuba com 1.149 moradores e Prefeita Julia. Acesse também o <a href="mapa.html" style="color:#f0d060">Mapa</a>, <a href="sobre.html" style="color:#f0d060">A Cidade</a>, <a href="lore.html" style="color:#f0d060">Lore</a> e <a href="moradores.html" style="color:#f0d060">Moradores</a>.
+  </div>
+</noscript>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/main.min.js?v=20261118seo"></script>
+<script src="js/personagem.min.js?v=20261118seo"></script>
+<script src="js/jogo-dados.min.js?v=20261118seo"></script>
+<script src="js/jogo.min.js?v=20261118pvp4"></script>
+<script src="js/online.min.js?v=20261118pvp"></script>
+<script src="js/interacoes.min.js?v=20261118pvp"></script>
+<script src="js/loja.min.js?v=20261118pvp4"></script>
+<script src="js/evento-policia.min.js?v=20261118pvp4"></script>
+</body>
+</html>

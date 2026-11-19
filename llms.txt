@@ -1,0 +1,30 @@
+# Caraguá Pixel
+
+> Cidade 3D voxel multiplayer interativa inspirada em Caraguatatuba (23°37' S, 45°25' O), criada por @caraguapixel no Instagram. Hoje conta com 1.149 moradores em 1.048 casas e 136 quarteirões sob gestão da Prefeita Julia (@julia_silxo), chat online em tempo real, evento noturno de Polícia e Ladrão (21h BRT) e fachadas comerciais para empresas reais da cidade.
+
+Caraguá Pixel começou como uma orla vazia à noite: a cada novo seguidor no perfil oficial [@caraguapixel](https://www.instagram.com/caraguapixel/), uma janela acende e um novo morador entra para a cidade. Os 15 primeiros seguidores formaram a Câmara Municipal de vereadores, e o projeto evoluiu para um mapa 3D navegável em Three.js no navegador, com Shopping Caragua Pixel, Parque de Diversões na praia, Pixel Motors, Boulevard da Praia, Galeria Pixel, Hospital Municipal, UPA 24h, Academia Pixel Fit, Prefeitura, Câmara, Fórum, Cadeia 79, Escola, Morro Santo Antônio e a misteriosa Ilha do Outro Lado.
+
+Principais destaques ao vivo:
+- **Cidade 3D Multiplayer**: exploração livre em primeira/terceira pessoa, mapa interativo, busca de moradores por `@` do Instagram, emotes, veículos e chat da cidade em tempo real.
+- **Evento Noturno Polícia e Ladrão (21h BRT)**: fuga da Cadeia 79, viaturas com giroflex, radar policial e prisões em equipe.
+- **Empresas VIP (20 vagas)**: empresários com CNPJ ou MEI/CPF podem colocar a fachada 3D de sua loja real na Galeria Pixel, Boulevard da Praia ou Centro, com link direto de WhatsApp/Instagram ao clicar e divulgação nos Stories do @caraguapixel (criação em até 2 dias úteis após pagamento via PIX).
+
+## Páginas Principais
+
+- [Jogar em 3D (Início)](https://caraguapixel.online/): Cidade 3D interativa de Caraguá Pixel com busca de moradores (`Ache seu @`), minimapa, chat multiplayer, loja e eventos ao vivo.
+- [Empresas VIP — Sua Loja Real em Caraguá Pixel](https://caraguapixel.online/empresas.html): Programa para comércios reais colocarem sua marca em fachada 3D na cidade, com 20 vagas iniciais, checkout PIX automático e entrega em até 2 dias úteis.
+- [Mapa Interativo de Caraguá Pixel](https://caraguapixel.online/mapa.html): Guia visual e interativo com os 13 pontos principais, bairros, construções novas e mistérios de Caraguá Pixel.
+- [Montador de Moradores e Mural](https://caraguapixel.online/moradores.html): Ferramenta para criar seu personagem em pixel art, escolher profissão e entrar para o mural oficial da cidade.
+- [A Cidade — Sobre Caraguá Pixel](https://caraguapixel.online/sobre.html): Visão geral do projeto, números atuais (1.149 moradores, 15 vereadores, 12 vitrines comerciais), gestão da Prefeita Julia e mistérios da orla.
+- [Lore — A História Episódio por Episódio](https://caraguapixel.online/lore.html): Linha do tempo completa desde o Dia 1 na orla vazia até a eleição da Prefeita Julia e a Grande Expansão.
+
+## Comunidade e Apoio
+
+- [Cartas à Cidade (Sugestões)](https://caraguapixel.online/sugestoes.html): Formulário para enviar ideias de história, novos pontos no mapa ou solicitações comerciais para a @caraguapixel.
+- [Seja um Pilar da Cidade (Apoie)](https://caraguapixel.online/apoie.html): Financiamento coletivo oficial no Apoia.se (`https://apoia.se/caraguapixel`) para manter o servidor 3D online e financiar novos bairros e episódios.
+- [Privacidade e Dados](https://caraguapixel.online/privacidade.html): Política de privacidade explicando o uso de `localStorage`, presença/chat multiplayer e dados enviados para lojas e Apoia.se.
+
+## Links Oficiais
+
+- [Instagram @caraguapixel](https://www.instagram.com/caraguapixel/): Perfil oficial onde novos moradores e episódios são publicados.
+- [Apoia.se Caraguá Pixel](https://apoia.se/caraguapixel): Campanha oficial de financiamento coletivo do projeto.

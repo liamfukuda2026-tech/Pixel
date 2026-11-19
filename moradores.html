@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Moradores · Monte seu personagem e veja o mural da cidade</title>
+<meta name="description" content="Crie seu personagem em pixel art com 14 profissões, personalize rosto, cabelo e roupas, baixe o PNG e entre no mural oficial de Caraguá Pixel.">
+<link rel="canonical" href="https://caraguapixel.online/moradores.html">
+<meta property="og:site_name" content="Caraguá Pixel">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Moradores · Monte seu personagem e veja o mural da cidade">
+<meta property="og:description" content="Crie seu personagem em pixel art com 14 profissões, personalize rosto, cabelo e roupas, baixe o PNG e entre no mural oficial de Caraguá Pixel.">
+<meta property="og:url" content="https://caraguapixel.online/moradores.html">
+<meta property="og:image" content="https://caraguapixel.online/img/banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Moradores · Monte seu personagem e veja o mural da cidade">
+<meta name="twitter:description" content="Crie seu personagem em pixel art com 14 profissões, personalize rosto, cabelo e roupas, baixe o PNG e entre no mural oficial de Caraguá Pixel.">
+<meta name="twitter:image" content="https://caraguapixel.online/img/banner.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/style.min.css?v=20261118seo">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="img/brasao.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": "https://caraguapixel.online/moradores.html",
+  "name": "Moradores · Monte seu personagem e veja o mural da cidade",
+  "inLanguage": "pt-BR",
+  "description": "Crie seu personagem em pixel art com 14 profissões, personalize rosto, cabelo e roupas, baixe o PNG e entre no mural oficial de Caraguá Pixel.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://caraguapixel.online/",
+    "name": "Caraguá Pixel"
+  }
+}
+</script>
+</head>
+<body>
+<div class="vagalumes-site" aria-hidden="true"></div>
+
+<header class="topo">
+  <nav class="nav">
+    <a class="marca" href="/"><img src="img/brasao.png" alt="Brasão de Caraguá Pixel" width="36" height="36"><span>Caraguá Pixel</span></a>
+    <button class="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="links">
+      <li><a href="/">Jogar</a></li>
+      <li><a href="sobre.html">A Cidade</a></li>
+      <li><a href="lore.html">Lore</a></li>
+      <li><a href="mapa.html">Mapa</a></li>
+      <li><a href="moradores.html" class="ativo">Moradores</a></li>
+      <li><a href="sugestoes.html">Sugestões</a></li>
+      <li><a href="empresas.html">🏢 Empresas VIP</a></li>
+      <li><a href="apoie.html" class="link-apoiar">Seja um pilar da cidade</a></li>
+    </ul>
+    <a class="btn btn-ouro btn-pequeno seguir" href="https://www.instagram.com/caraguapixel/" data-instagram target="_blank" rel="noopener noreferrer nofollow">Seguir</a>
+  </nav>
+</header>
+
+<main>
+  <section class="lore-topo">
+    <p class="kicker">Moradores</p>
+    <h1>Monte seu <span class="ouro">morador</span></h1>
+    <p class="sub">Escolha sua profissão, monte a aparência e dê um nome. Ao terminar, seu personagem entra para o mural de Caraguá Pixel.</p>
+  </section>
+
+  <section class="montador-area">
+    <form class="montador card" novalidate autocomplete="off">
+      <div class="vitrine">
+        <div class="palco">
+          <span class="placa-nome">Seu nome</span>
+          <canvas class="previa" width="240" height="264" aria-label="Prévia do seu personagem"></canvas>
+        </div>
+        <p class="placa-oficio">Morador(a)</p>
+        <div class="acoes">
+          <button type="button" class="btn btn-escuro btn-pequeno sortear">🎲 Aleatório</button>
+          <button type="button" class="btn btn-escuro btn-pequeno baixar">⬇ Baixar PNG</button>
+        </div>
+      </div>
+
+      <div class="controles">
+        <p class="rotulo">1 · Escolha sua profissão</p>
+        <div class="oficios" role="radiogroup" aria-label="Profissão"></div>
+
+        <p class="rotulo">2 · Monte sua aparência</p>
+        <div class="sexo" role="radiogroup" aria-label="Sexo do personagem">
+          <button type="button" class="aba-sexo" data-sexo="homem" role="radio" aria-checked="true">Homem</button>
+          <button type="button" class="aba-sexo" data-sexo="mulher" role="radio" aria-checked="false">Mulher</button>
+        </div>
+        <div class="abas" role="tablist">
+          <button type="button" class="aba ativa" role="tab" data-aba="corpo">Corpo</button>
+          <button type="button" class="aba" role="tab" data-aba="rosto">Rosto</button>
+          <button type="button" class="aba" role="tab" data-aba="cabelo">Cabelo</button>
+          <button type="button" class="aba" role="tab" data-aba="roupa">Roupa</button>
+        </div>
+        <div class="paineis-abas"></div>
+
+        <hr class="divisor">
+
+        <p class="rotulo">3 · Dê um nome</p>
+        <div class="campo">
+          <label for="nome">Nome <span class="obrig">*</span></label>
+          <input id="nome" name="nome" type="text" maxlength="24" placeholder="Ex.: Enzo" required>
+        </div>
+        <div class="campo">
+          <label for="instagram">Instagram <span class="opcional">(opcional)</span></label>
+          <div class="com-arroba"><span>@</span><input id="instagram" name="instagram" type="text" maxlength="30" placeholder="seu.perfil" autocapitalize="off" spellcheck="false"></div>
+        </div>
+        <p class="erro-form" role="alert"></p>
+        <button class="btn btn-ouro enviar" type="submit">Entrar no mural</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="secao" aria-label="Como personalizar seu personagem e regras do mural">
+    <p class="kicker">Guia do Morador</p>
+    <h2>Como funciona o montador, profissões e verificação de @</h2>
+    <p class="sub">Veja como criar seu sprite em pixel art, entender os uniformes de carreira e conectar seu perfil do Instagram aos 1.149 moradores de Caraguá Pixel.</p>
+    <div class="explorar">
+      <article class="card">
+        <h3>14 Profissões &amp; Uniformes</h3>
+        <p>Você pode escolher entre Morador(a), Pescador(a), Salva-vidas, Professor(a), Médico(a), Fisioterapeuta, Advogado(a), Mecânico(a), Entregador(a), Engenheiro(a), Gari, Policial, Comerciante e Vereador(a). Carreiras com farda ou jaleco aplicam traje próprio; já Morador(a) e Comerciante liberam camisa, calça, bermuda ou saia com cores livres.</p>
+        <span class="tag tag-pronto">Personalização</span>
+      </article>
+      <article class="card">
+        <h3>Aparência, Aleatório e PNG</h3>
+        <p>Alterne entre Homem e Mulher e refine cada detalhe nas abas <strong>Corpo</strong> (porte e tom de pele), <strong>Rosto</strong> (olhos, sobrancelha, boca, barba e marcas como óculos e sardas), <strong>Cabelo</strong> e <strong>Roupa</strong>. Use <strong>🎲 Aleatório</strong> para testar combinações ou clique em <strong>⬇ Baixar PNG</strong> para salvar sua imagem em pixel art.</p>
+        <span class="tag tag-pronto">Sprite 2D</span>
+      </article>
+      <article class="card">
+        <h3>Regras do Mural da Cidade</h3>
+        <p>O mural abaixo destaca os <strong>15 Vereadores Oficiais</strong> (incluindo a <strong>Prefeita Julia</strong>, <code>@julia_silxo</code>), a lista pública de moradores vindos dos comentários do <code>@caraguapixel</code> e os bonecos criados neste dispositivo via <code>localStorage</code>. Contas marcadas como ocultas não aparecem publicamente. Use a busca por nome ou <code>@</code> e o filtro de profissões para encontrar amigos e vizinhos no mural.</p>
+        <span class="tag tag-pronto">Comunidade</span>
+      </article>
+      <article class="card">
+        <h3>Verificação de @arroba no 3D</h3>
+        <p>Informar seu <code>@</code> do Instagram gera o link público no card do mural e ajuda a identificar sua casa na cidade. Para aparecer nas próximas atualizações oficiais, siga <strong>@caraguapixel</strong> e comente seu nome e profissão nos vídeos. No <a href="/">jogo 3D</a>, use o botão <strong>🪪 Entrar @</strong> para reivindicar seu arroba, proteger seu perfil com PIN de 4 números na nuvem e usar <strong>Ache seu @</strong> para localizar sua residência entre os 136 quarteirões.</p>
+        <span class="tag tag-pronto">Mundo 3D</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="mural-secao" id="mural">
+    <h2>Mural de <span class="ouro">Caraguá Pixel</span></h2>
+    <p class="kicker mural-subtitulo">Os moradores e vereadores da cidade</p>
+    <p class="sub mural-total"></p>
+    <div class="mural-filtros">
+      <input type="search" class="busca" placeholder="Procurar por nome ou @" aria-label="Procurar morador">
+      <select class="filtro-oficio" aria-label="Filtrar por profissão"><option value="">Todas as profissões</option></select>
+    </div>
+    <div class="mural"></div>
+    <p class="mural-vazio" hidden></p>
+    <button class="btn btn-escuro ver-mais" type="button" hidden>Ver mais moradores</button>
+  </section>
+</main>
+
+<footer class="rodape">
+  <img class="banner-rodape" src="img/banner.png" alt="" aria-hidden="true">
+  <div class="rodape-conteudo">
+    <img src="img/brasao.png" alt="Brasão de Caraguá Pixel" width="56" height="56">
+    <p><strong>Caraguá Pixel</strong> · a cidade que você constrói seguindo</p>
+    <p><a href="https://www.instagram.com/caraguapixel/" data-instagram target="_blank" rel="noopener noreferrer nofollow" class="insta-texto">Instagram</a> · <a class="insta-texto" href="privacidade.html">Privacidade</a></p>
+    <div class="aviso" role="status" aria-live="polite"></div>
+  </div>
+</footer>
+
+<a class="voltar-topo" href="#" aria-label="Voltar ao topo">▲</a>
+<script src="js/main.min.js?v=20261118seo"></script>
+<script src="js/personagem.min.js?v=20261118seo"></script>
+<script src="js/jogo-dados.min.js?v=20261118seo"></script>
+<script src="js/moradores.min.js?v=20261118seo"></script>
+</body>
+</html>
